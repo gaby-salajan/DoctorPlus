@@ -72,6 +72,8 @@
         android:layout_marginBottom="284dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Introdu parola"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/connectBtn"
         app:layout_constraintEnd_toEndOf="@+id/editTextNumber"
         app:layout_constraintStart_toStartOf="@+id/editTextNumber"
