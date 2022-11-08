@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.299" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/fieldCNPLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="0.183" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/fieldPasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.346" />
 
     <Button
-        android:id="@+id/connectBtn"
+        android:id="@+id/btnConnect"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Conectare"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.434" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Inregistrare"
