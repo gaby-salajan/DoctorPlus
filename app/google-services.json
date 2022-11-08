@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773399902173",
+    "project_id": "doctorplus-nesa",
+    "storage_bucket": "doctorplus-nesa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773399902173:android:015eaf147fbbfc5ddda834",
+        "android_client_info": {
+          "package_name": "com.ns.doctorplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773399902173-j2jnoo4md3ttb9jspau382ehromrv238.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAukDX3KLvyV57VpSsCOx7C1FlxrKJR8Ek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773399902173-j2jnoo4md3ttb9jspau382ehromrv238.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
