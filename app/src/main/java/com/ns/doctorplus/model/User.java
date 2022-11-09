@@ -10,20 +10,21 @@ public class User {
     private String cnp;
     private Timestamp birthDate;
     private String address;
-
+    private String password;
     private String firstName;
     private String lastName;
     private String email;
 
     public User() {}
 
-    public User(String cnp, String firstName, String lastName, String email, String address, Timestamp birthDate) {
+    public User(String cnp, String firstName, String lastName, String email, String address, Timestamp birthDate, String password) {
         this.cnp = cnp;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.birthDate = birthDate;
+        this.password = password;
     }
 
     public String getDocumentId() {
@@ -71,5 +72,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -52,12 +52,12 @@ public class UsersFirestoreManager {
     public void sendContactsBulk() {
 
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("502", "Jack", "Miller", "jmiller@gmail.com", "str dorna", new Timestamp(new Date())));
+        createDocument(new User("502", "Jack", "Miller", "jmiller@gmail.com", "str dorna", new Timestamp(new Date()), "parola"));
 
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("102", "Michael", "Johnson", "m_johnson@gmail.com", "str a", new Timestamp(new Date())));
+        createDocument(new User("102", "Michael", "Johnson", "m_johnson@gmail.com", "str a", new Timestamp(new Date()), "parola"));
 
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("20", "Chris", "Stanley", "chrisstnl@gmail.com", "strada b", new Timestamp(new Date())));
+        createDocument(new User("20", "Chris", "Stanley", "chrisstnl@gmail.com", "strada b", new Timestamp(new Date()), "parola"));
     }
 }

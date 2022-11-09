@@ -15,6 +15,7 @@ public final class UsersFirestoreDbContract {
     public static final String FIELD_BIRTH_DATE = "birthDate";
     public static final String FIELD_CNP = "cnp";
     public static final String FIELD_ADDRESS = "address";
+    public static final String FIELD_PASSWORD = "password";
 
     // To prevent someone from accidentally instantiating the contract 		class, make the constructor private
     private UsersFirestoreDbContract() {}
