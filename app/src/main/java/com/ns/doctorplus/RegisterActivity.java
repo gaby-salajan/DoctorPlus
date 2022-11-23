@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 
 public class RegisterActivity extends AppCompatActivity {
