@@ -74,9 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 new CountDownTimer(1000, 1000) {
                     @Override
-                    public void onTick(long l) {
-
-                    }
+                    public void onTick(long l) {}
 
                     public void onFinish() {
                         txtCNP.setText("");

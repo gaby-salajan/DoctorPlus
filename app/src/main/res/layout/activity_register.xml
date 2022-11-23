@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRegister"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
@@ -44,10 +45,11 @@
         app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintStart_toEndOf="@+id/textCNP"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textNume"
+        android:id="@+id/textLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NUME"
@@ -61,7 +63,7 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <EditText
-        android:id="@+id/fieldNume"
+        android:id="@+id/fieldLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -70,12 +72,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@+id/textNume"
+        app:layout_constraintStart_toEndOf="@+id/textLastName"
         app:layout_constraintTop_toBottomOf="@+id/fieldCNP"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textPrenume"
+        android:id="@+id/textFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PRENUME"
@@ -85,11 +88,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNume"
+        app:layout_constraintTop_toBottomOf="@+id/textLastName"
         app:layout_constraintVertical_bias="0.08" />
 
     <EditText
-        android:id="@+id/fieldPrenume"
+        android:id="@+id/fieldFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -98,12 +101,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/textPrenume"
-        app:layout_constraintTop_toBottomOf="@+id/fieldNume"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintStart_toEndOf="@+id/textFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/fieldLastName"
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textAdresa"
+        android:id="@+id/textAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADRESA"
@@ -112,11 +116,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPrenume"
+        app:layout_constraintTop_toBottomOf="@+id/textFirstName"
         app:layout_constraintVertical_bias="0.09" />
 
     <EditText
-        android:id="@+id/fieldAdresa"
+        android:id="@+id/fieldAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -125,12 +129,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toEndOf="@+id/textAdresa"
-        app:layout_constraintTop_toBottomOf="@+id/fieldPrenume"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintStart_toEndOf="@+id/textAddress"
+        app:layout_constraintTop_toBottomOf="@+id/fieldFirstName"
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textDataNasterii"
+        android:id="@+id/textBirthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data Nasterii"
@@ -140,22 +145,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAdresa"
+        app:layout_constraintTop_toBottomOf="@+id/textAddress"
         app:layout_constraintVertical_bias="0.109" />
 
-    <EditText
-        android:id="@+id/fieldDataNasterii"
+    <TextView
+        android:id="@+id/fieldBirthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:hint = "Introduceti Data Nasterii"
+        android:hint="ZZ/LL/AAAA"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toEndOf="@+id/textDataNasterii"
-        app:layout_constraintTop_toBottomOf="@+id/fieldAdresa"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toEndOf="@+id/textBirthDate"
+        app:layout_constraintTop_toBottomOf="@+id/fieldAddress"
+        app:layout_constraintVertical_bias="0.069"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textInregistrare"
@@ -179,7 +184,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDataNasterii"
+        app:layout_constraintTop_toBottomOf="@+id/textBirthDate"
         app:layout_constraintVertical_bias="0.153" />
 
     <EditText
@@ -187,13 +192,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Introduceti Email"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toEndOf="@+id/textEmail"
-        app:layout_constraintTop_toBottomOf="@+id/fieldDataNasterii"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintTop_toBottomOf="@+id/fieldBirthDate"
+        app:layout_constraintVertical_bias="0.065"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
