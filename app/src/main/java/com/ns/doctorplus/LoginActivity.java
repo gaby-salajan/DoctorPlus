@@ -62,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //usersFirestoreManager.sendContactsBulk();
-                usersFirestoreManager.getUser(txtCNP.getText().toString(), txtPassword.getText().toString());
-                //Toast.makeText(LoginActivity.this, "Bulk contacts sent", Toast.LENGTH_LONG).show();
+                usersFirestoreManager.sendContactsBulk();
+                //usersFirestoreManager.getUser(txtCNP.getText().toString(), txtPassword.getText().toString());
+                Toast.makeText(LoginActivity.this, "Bulk contacts sent", Toast.LENGTH_LONG).show();
             }
         });
 
