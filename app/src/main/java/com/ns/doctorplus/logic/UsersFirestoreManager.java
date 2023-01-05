@@ -10,7 +10,6 @@ import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_LAST_NAME;
 import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_PASSWORD;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -34,7 +33,6 @@ import java.util.List;
 public class UsersFirestoreManager {
     private static UsersFirestoreManager usersFirestoreManager;
 
-    private User currentUser;
     private FirebaseFirestore firebaseFirestore;
     private CollectionReference usersCollectionReference;
 
@@ -73,74 +71,72 @@ public class UsersFirestoreManager {
 
         // Create a new Contact document map of values and add it to the collection
         createDocument(new User("502", "Jack", "Miller", "jmiller@gmail.com", "str dorna", new Timestamp(new Date()), "parola"));
-
         // Create a new Contact document map of values and add it to the collection
         createDocument(new User("102", "Michael", "Johnson", "m_johnson@gmail.com", "str a", new Timestamp(new Date()), "parola"));
-
         // Create a new Contact document map of values and add it to the collection
         createDocument(new User("20", "Chris", "Stanley", "chrisstnl@gmail.com", "strada b", new Timestamp(new Date()), "parola"));
     }
 
-    public User getUser2(String cnp, String password){
+//    public User getUser2(String cnp, String password){
+//        usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                List<User> users = queryDocumentSnapshots.toObjects(User.class);
+//                if(!users.isEmpty()){
+//                    currentUser = users.get(0);
+//                }
+//
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.i("snapshot", "gresit");
+//            }
+//        });
+//        if(currentUser == null){
+//            Log.i("snapshot", "nu e ok");
+//        }else{
+//            Log.i("snapshot", currentUser.toString());
+//        }
+//        return currentUser;
+//    }
+//
+//    public User getUser(String cnp, String password){
+//             usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+//                        User user = new User((String) documentSnapshot.get(FIELD_CNP),
+//                                (String) documentSnapshot.get(FIELD_FIRST_NAME),
+//                                (String) documentSnapshot.get(FIELD_LAST_NAME),
+//                                (String) documentSnapshot.get(FIELD_EMAIL),
+//                                (String) documentSnapshot.get(FIELD_ADDRESS),
+//                                (Timestamp) documentSnapshot.get(FIELD_BIRTH_DATE),
+//                                (String) documentSnapshot.get(FIELD_PASSWORD));
+//                        user.setDocumentId(documentSnapshot.getId());
+//                        Log.i("Snapshot", user.toString());
+//                        currentUser = user;
+//                        Log.i("Snapshot", currentUser.toString());
+//                    }
+//                }
+//            });
+//        if(currentUser == null){
+//            Log.i("snapshot", "nu e ok");
+//        }
+//        return currentUser;
+//    }
 
-        usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                List<User> users = queryDocumentSnapshots.toObjects(User.class);
-                if(!users.isEmpty()){
-                    currentUser = users.get(0);
-                }
+    public void getUser3(String cnp, String password, FirestoreCallback firestoreCallback){
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.i("snapshot", "gresit");
-            }
-        });
-        if(currentUser == null){
-            Log.i("snapshot", "nu e ok");
-        }else{
-            Log.i("snapshot", currentUser.toString());
-        }
-        return currentUser;
-    }
-
-    public User getUser(String cnp, String password){
-             usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                        User user = new User((String) documentSnapshot.get(FIELD_CNP),
-                                (String) documentSnapshot.get(FIELD_FIRST_NAME),
-                                (String) documentSnapshot.get(FIELD_LAST_NAME),
-                                (String) documentSnapshot.get(FIELD_EMAIL),
-                                (String) documentSnapshot.get(FIELD_ADDRESS),
-                                (Timestamp) documentSnapshot.get(FIELD_BIRTH_DATE),
-                                (String) documentSnapshot.get(FIELD_PASSWORD));
-                        user.setDocumentId(documentSnapshot.getId());
-                        Log.i("Snapshot", user.toString());
-                        currentUser = user;
-                        Log.i("Snapshot", currentUser.toString());
-
-                    }
-                }
-            });
-        if(currentUser == null){
-            Log.i("snapshot", "nu e ok");
-        }
-        return currentUser;
-    }
-
-    public User getUser3(String cnp, String password){
         usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                User user = null;
                 if (task.isSuccessful()) {
                     if(!task.getResult().getDocuments().isEmpty()){
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                        User user = new User((String) documentSnapshot.get(FIELD_CNP),
+                        user = new User((String) documentSnapshot.get(FIELD_CNP),
                                 (String) documentSnapshot.get(FIELD_FIRST_NAME),
                                 (String) documentSnapshot.get(FIELD_LAST_NAME),
                                 (String) documentSnapshot.get(FIELD_EMAIL),
@@ -149,16 +145,15 @@ public class UsersFirestoreManager {
                                 (String) documentSnapshot.get(FIELD_PASSWORD));
                         user.setDocumentId(documentSnapshot.getId());
                         Log.i("Snapshot", user.toString());
-                        currentUser = user;
-                        Log.i("Snapshot", currentUser.toString());
+                        firestoreCallback.onResponse(user);
                     }
+                }
+                else {
+                    Log.i("snapshot", "nu e ok");
                 }
             }
         });
-        if(currentUser == null){
-            Log.i("snapshot", "nu e ok");
-        }
-        return currentUser;
+
     }
 
 }

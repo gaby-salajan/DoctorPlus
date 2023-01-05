@@ -1,29 +1,19 @@
 package com.ns.doctorplus;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.ns.doctorplus.logic.FirestoreCallback;
 import com.ns.doctorplus.logic.UsersFirestoreDbContract;
 import com.ns.doctorplus.logic.UsersFirestoreManager;
 import com.ns.doctorplus.model.User;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtPassword;
 
     private UsersFirestoreManager usersFirestoreManager;
-    private UsersFirestoreDbContract user;
+    private User user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +42,32 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //usersFirestoreManager.sendContactsBulk();
 
-                if(txtCNP.getText().toString().matches("") && txtPassword.getText().toString().matches("")){
+                if(txtCNP.getText().toString().matches("") || txtPassword.getText().toString().matches("")){
                     Toast.makeText(getApplicationContext(), "completati ambele campuri", Toast.LENGTH_LONG).show();
-                }else{
-                    User user;
-                    user = usersFirestoreManager.getUser3(txtCNP.getText().toString(), txtPassword.getText().toString());
-                    //Toast.makeText(getApplicationContext(), user.getFirstName(), Toast.LENGTH_LONG).show();
-                    if (user != null) {
-                        btnLogin.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-                                txtCNP.setText("");
-                                txtPassword.setText("");
+                }
+                else{
+                    usersFirestoreManager.getUser3(txtCNP.getText().toString(), txtPassword.getText().toString(), new FirestoreCallback() {
+                        @Override
+                        public void onResponse(User user1) {
+                            user = user1;
+
+                            if (user != null){
+                                if(user.getPassword().contentEquals(txtPassword.getText())){
+                                    startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+
+                                    txtCNP.setText("");
+                                    txtPassword.setText("");
+                                    user = null;
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), "cnp/parola gresite", Toast.LENGTH_LONG).show();
+                                }
                             }
-                        });
-                    }
+                            else{
+                                Toast.makeText(getApplicationContext(), "utilizatorul nu a fost gasit", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
             }
         });
