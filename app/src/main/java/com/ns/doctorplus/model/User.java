@@ -4,6 +4,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentId;
 
 public class User {
+
     @DocumentId
     private String documentId;
 

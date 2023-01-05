@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.ns.doctorplus.logic.FirestoreCallback;
 import com.ns.doctorplus.logic.UsersFirestoreDbContract;
 import com.ns.doctorplus.logic.UsersFirestoreManager;
@@ -53,7 +54,11 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (user != null){
                                 if(user.getPassword().contentEquals(txtPassword.getText())){
-                                    startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+                                    Intent toHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    Gson gson = new Gson();
+                                    String myJson = gson.toJson(user);
+                                    toHomePage.putExtra("myjson", myJson);
+                                    startActivity(toHomePage);
 
                                     txtCNP.setText("");
                                     txtPassword.setText("");
