@@ -8,6 +8,7 @@ import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_EMAIL;
 import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_FIRST_NAME;
 import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_LAST_NAME;
 import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_PASSWORD;
+import static com.ns.doctorplus.logic.UsersFirestoreDbContract.FIELD_TYPE;
 
 import android.util.Log;
 
@@ -70,11 +71,11 @@ public class UsersFirestoreManager {
     public void sendContactsBulk() {
 
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("502", "Jack", "Miller", "jmiller@gmail.com", "str dorna", new Timestamp(new Date()), "parola"));
+        createDocument(new User("502", "Jack", "Miller", "jmiller@gmail.com", "str dorna", new Timestamp(new Date()), "parola", "doctor"));
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("102", "Michael", "Johnson", "m_johnson@gmail.com", "str a", new Timestamp(new Date()), "parola"));
+        createDocument(new User("102", "Michael", "Johnson", "m_johnson@gmail.com", "str a", new Timestamp(new Date()), "parola", "pacient"));
         // Create a new Contact document map of values and add it to the collection
-        createDocument(new User("20", "Chris", "Stanley", "chrisstnl@gmail.com", "strada b", new Timestamp(new Date()), "parola"));
+        createDocument(new User("20", "Chris", "Stanley", "chrisstnl@gmail.com", "strada b", new Timestamp(new Date()), "parola", "asistenta"));
     }
 
 //    public User getUser2(String cnp, String password){
@@ -128,7 +129,6 @@ public class UsersFirestoreManager {
 //    }
 
     public void getUser3(String cnp, String password, FirestoreCallback firestoreCallback){
-
         usersCollectionReference.whereEqualTo(FIELD_CNP, cnp).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -142,7 +142,8 @@ public class UsersFirestoreManager {
                                 (String) documentSnapshot.get(FIELD_EMAIL),
                                 (String) documentSnapshot.get(FIELD_ADDRESS),
                                 (Timestamp) documentSnapshot.get(FIELD_BIRTH_DATE),
-                                (String) documentSnapshot.get(FIELD_PASSWORD));
+                                (String) documentSnapshot.get(FIELD_PASSWORD),
+                                (String) documentSnapshot.get(FIELD_TYPE));
                         user.setDocumentId(documentSnapshot.getId());
                         Log.i("Snapshot", user.toString());
                         firestoreCallback.onResponse(user);

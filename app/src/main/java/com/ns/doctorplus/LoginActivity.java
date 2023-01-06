@@ -54,12 +54,21 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (user != null){
                                 if(user.getPassword().contentEquals(txtPassword.getText())){
-                                    Intent toHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    Intent toHomePage = new Intent();
+                                    if(user.getType().equals("pacient")){
+                                        toHomePage = new Intent(LoginActivity.this, PacientHomeActivity.class);
+                                    }else if(user.getType().equals("doctor")){
+                                        toHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    }else if(user.getType().equals("asistenta")){
+                                        toHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    }else {
+                                        toHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    }
+
                                     Gson gson = new Gson();
                                     String myJson = gson.toJson(user);
                                     toHomePage.putExtra("myjson", myJson);
                                     startActivity(toHomePage);
-
                                     txtCNP.setText("");
                                     txtPassword.setText("");
                                     user = null;
