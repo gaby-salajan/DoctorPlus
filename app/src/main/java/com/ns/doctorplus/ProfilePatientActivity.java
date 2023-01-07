@@ -31,17 +31,17 @@ import dmax.dialog.SpotsDialog;
 
 
 public class ProfilePatientActivity extends AppCompatActivity {
-    private MaterialTextView doctorName;
-    private MaterialTextView doctorSpe;
-    private MaterialTextView doctorPhone;
-    private MaterialTextView doctorEmail;
-    private MaterialTextView doctorAddress;
-    private MaterialTextView doctorAbout;
-    private ImageView doctorImage;
+    private MaterialTextView patientName;
+    private MaterialTextView patientSpe;
+    private MaterialTextView patientPhone;
+    private MaterialTextView patientEmail;
+    private MaterialTextView patientAddress;
+    private MaterialTextView patientAbout;
+    private ImageView patientImage;
     StorageReference pathReference ;
-    final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+    final String patientID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRef = db.collection("Patient").document("" + doctorID + "");
+    DocumentReference docRef = db.collection("Patient").document("" + patientID + "");
 
 
     @Override
@@ -49,21 +49,22 @@ public class ProfilePatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_doctor);
 
-        doctorName = findViewById(R.id.doctor_name);
-        doctorSpe = findViewById(R.id.doctor_specialite);
-        doctorPhone = findViewById(R.id.doctor_phone);
-        doctorEmail = findViewById(R.id.doctor_email);
-        doctorAddress = findViewById(R.id.doctor_address);
-        doctorAbout = findViewById(R.id.doctor_about);
-        doctorImage = findViewById(R.id.imageView3);
+        patientName = findViewById(R.id.doctor_name);
+        patientSpe = findViewById(R.id.doctor_specialite);
+        patientPhone = findViewById(R.id.doctor_phone);
+        patientEmail = findViewById(R.id.doctor_email);
+        patientAddress = findViewById(R.id.doctor_address);
+        patientAbout = findViewById(R.id.doctor_about);
+        patientImage = findViewById(R.id.imageView3);
+
         Drawable defaultImage = getResources().getDrawable(R.drawable.ic_anon_user_48dp); //default user image
         AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setCancelable(true).build();
         dialog.show();
-
+        //dialog.dismiss()
 
         //display profile image
         String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("patientProfile/"+ imageId+".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -72,7 +73,7 @@ public class ProfilePatientActivity extends AppCompatActivity {
                         .placeholder(R.mipmap.ic_launcher)
                         .fit()
                         .centerCrop()
-                        .into(doctorImage);//hna fin kayn Image view
+                        .into(patientImage);//hna fin kayn Image view
                 dialog.dismiss();
                 // profileImage.setImageURI(uri);
             }
@@ -80,18 +81,33 @@ public class ProfilePatientActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
+                //R.drawable.ic_person
+
+                String uri = "@drawable/ic_person";
+
+                int imageResource = 0;
+                try {
+                    imageResource = getResources().getIdentifier(uri, null, getPackageName());
+                    Drawable res = getResources().getDrawable(imageResource);
+                    patientImage.setImageDrawable(res);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if(imageResource != 0){
+                    dialog.dismiss();
+                }
             }
         });
 
         docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                doctorName.setText(documentSnapshot.getString("name"));
-               // doctorSpe.setText(documentSnapshot.getString("dateNaissance"));
-                doctorPhone.setText(documentSnapshot.getString("tel"));
-                doctorEmail.setText(documentSnapshot.getString("email"));
-                doctorAddress.setText(documentSnapshot.getString("adresse"));
-                doctorImage.setImageDrawable(defaultImage);
+                patientName.setText(documentSnapshot.getString("name"));
+               // patientSpe.setText(documentSnapshot.getString("dateNaissance"));
+                patientPhone.setText(documentSnapshot.getString("tel"));
+                patientEmail.setText(documentSnapshot.getString("email"));
+                patientAddress.setText(documentSnapshot.getString("adresse"));
+                patientImage.setImageDrawable(defaultImage);
             }
         });
         // Find the toolbar view inside the activity layout
@@ -146,9 +162,9 @@ public class ProfilePatientActivity extends AppCompatActivity {
 
     private void startEditActivity() {
         Intent intent = new Intent(this, EditProfilePatientActivity.class);
-        intent.putExtra("CURRENT_NAME", doctorName.getText().toString());
-        intent.putExtra("CURRENT_PHONE", doctorPhone.getText().toString());
-        intent.putExtra("CURRENT_ADDRESS", doctorAddress.getText().toString());
+        intent.putExtra("CURRENT_NAME", patientName.getText().toString());
+        intent.putExtra("CURRENT_PHONE", patientPhone.getText().toString());
+        intent.putExtra("CURRENT_ADDRESS", patientAddress.getText().toString());
         startActivity(intent);
         finish();
     }

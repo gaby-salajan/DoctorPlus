@@ -116,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email=emailText.getText().toString();
-                String password=passwordText.getText().toString();
+                String email = emailText.getText().toString();
+                String password = passwordText.getText().toString();
                 if(!email.isEmpty() && !password.isEmpty() ){
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
