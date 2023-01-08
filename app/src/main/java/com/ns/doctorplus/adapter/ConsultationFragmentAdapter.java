@@ -37,7 +37,7 @@ public class ConsultationFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0: //Page number 1
-                return "Consultation";
+                return "Consultatie";
             case 1: //Page number 2
                 return "Hospitalisation";
             default:

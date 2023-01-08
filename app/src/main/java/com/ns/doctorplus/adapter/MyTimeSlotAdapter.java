@@ -66,7 +66,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
         if(timeSlotList.size()==0){
             holder.card_time_slot.setCardBackgroundColor(context.getResources().getColor(android.R.color.white));
 
-            holder.txt_time_slot_description.setText("Available");
+            holder.txt_time_slot_description.setText("Disponibil");
             holder.txt_time_slot_description.setTextColor(context.getResources().getColor(android.R.color.black));
             holder.txt_time_slot.setTextColor(context.getResources().getColor(android.R.color.black));
 
@@ -79,9 +79,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                     holder.card_time_slot.setTag(Common.DISABLE_TAG);
                     holder.card_time_slot.setCardBackgroundColor(context.getResources().getColor(android.R.color.darker_gray));
 
-                    holder.txt_time_slot_description.setText("Full");
+                    holder.txt_time_slot_description.setText("Indisponibil");
                     if(slotValue.getType().equals("Checked"))
-                        holder.txt_time_slot_description.setText("Choosen");
+                        holder.txt_time_slot_description.setText("Selectat");
                     holder.txt_time_slot_description.setTextColor(context.getResources()
                             .getColor(android.R.color.white));
                     holder.txt_time_slot.setTextColor(context.getResources().getColor(android.R.color.white));
@@ -90,9 +90,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
             }
 
         }
-        if (!cardViewList.contains(holder.card_time_slot))
+        if (!cardViewList.contains(holder.card_time_slot)){
             cardViewList.add(holder.card_time_slot);
-
+        }
 
             holder.setiRecyclerItemSelectedListener(new IRecyclerItemSelectedListener() {
                 @Override
@@ -113,9 +113,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                     localBroadcastManager.sendBroadcast(intent);
                     if(Common.CurrentUserType == "doctor" && holder.txt_time_slot_description.getText().equals("Available")){
                         AlertDialog.Builder alert = new AlertDialog.Builder(holder.card_time_slot.getContext());
-                        alert.setTitle("Block");
-                        alert.setMessage("Are you sure you want to block?");
-                        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        alert.setTitle("Setare ca indisponibil");
+                        alert.setMessage("Doriti sa setati intervalul ales ca indisponibil?");
+                        alert.setPositiveButton("Da", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -126,7 +126,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                                 apointementInformation.setChemin("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
                                 apointementInformation.setType("full");
                                 apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
-                                        .append("at")
+                                        .append(" - ")
                                         .append(simpleDateFormat.format(Common.currentDate.getTime())).toString());
                                 apointementInformation.setSlot(Long.valueOf(Common.currentTimeSlot));
 
@@ -141,11 +141,10 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                             }
                         });
 
-                        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        alert.setNegativeButton("Nu", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                                 dialog.dismiss();
                             }
                         });

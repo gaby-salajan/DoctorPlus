@@ -76,7 +76,7 @@ public class FicheActivity extends AppCompatActivity implements AdapterView.OnIt
                 .collection("MyMedicalFolder");
         ficheRef.document().set(new Fiche(maladieFiche, descriptionFiche, traitemenfiche, typeFiche, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
         //ficheRef.add(new Fiche(maladieFiche, descriptionFiche, traitemenfiche, typeFiche, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-        Toast.makeText(this, "Fiche added."+patient_name, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Fisa adaugata"+patient_name, Toast.LENGTH_LONG).show();
         finish();
     }
 

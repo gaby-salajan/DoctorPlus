@@ -51,7 +51,7 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         final Patient pat= documentSnapshot.toObject(Patient.class);
                         RequestHolder.title.setText(pat.getName());
-                        RequestHolder.specialite.setText("Want to be your patient");
+                        RequestHolder.specialite.setText("Doresc sa fiu pacientul dumneavoastra");
                         RequestHolder.addDoc.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(final View v) {
@@ -67,7 +67,7 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
                                     }
                                 });
                                 db.document(HourPath).update("choosen","true");
-                                Snackbar.make(t, "Patient added", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(t, "Pacient adaugat", Snackbar.LENGTH_SHORT).show();
                                 RequestHolder.addDoc.setVisibility(View.INVISIBLE);
 
                             }

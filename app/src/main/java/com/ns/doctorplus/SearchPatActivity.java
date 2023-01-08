@@ -82,14 +82,14 @@ public class SearchPatActivity extends AppCompatActivity {
 
         Drawable r= getResources().getDrawable(R.drawable.ic_local_hospital_black_24dp);
         r.setBounds(0, 0, r.getIntrinsicWidth(), r.getIntrinsicHeight());
-        SpannableString sb = new SpannableString(" Specialite" );
+        SpannableString sb = new SpannableString(" Specialitate" );
         ImageSpan imageSpan = new ImageSpan(r, ImageSpan.ALIGN_BOTTOM);
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //menu.findItem(R.id.empty).setTitle(sb);
 
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + "Search patient" + "</font>"));
+        searchView.setQueryHint(Html.fromHtml("<font color = #000000>" + "Cauta doctor" + "</font>"));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -114,31 +114,35 @@ public class SearchPatActivity extends AppCompatActivity {
                 return true;
             case R.id.option_general:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Médecin général");
+                adapter.getFilter().filter("Medicina generala");
                 return true;
             case R.id.option_Dentiste:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Dentiste");
+                adapter.getFilter().filter("Odontologie");
                 return true;
             case R.id.option_Ophtalmologue:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Ophtalmologue");
+                adapter.getFilter().filter("Oftalmologie");
                 return true;
             case R.id.option_ORL:
                 DoctorAdapterFiltred.specialiteSearch = true;
                 adapter.getFilter().filter("ORL");
                 return true;
+            case R.id.option_Gastro:
+                DoctorAdapterFiltred.specialiteSearch = true;
+                adapter.getFilter().filter("Gastroenterologie");
+                return true;
             case R.id.option_Pédiatre:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Pédiatre");
+                adapter.getFilter().filter("Pediatrie");
                 return true;
             case R.id.option_Radiologue:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Radiologue");
+                adapter.getFilter().filter("Radiologie");
                 return true;
             case R.id.option_Rhumatologue:
                 DoctorAdapterFiltred.specialiteSearch = true;
-                adapter.getFilter().filter("Rhumatologue");
+                adapter.getFilter().filter("Reumatologie");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -149,7 +153,7 @@ public class SearchPatActivity extends AppCompatActivity {
     private void configureToolbar(){
         // Get the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
-        toolbar.setTitle("Doctors list");
+        toolbar.setTitle("Lista Doctori");
         // Sets the Toolbar
         setSupportActionBar(toolbar);
     }

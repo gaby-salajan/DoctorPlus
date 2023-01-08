@@ -82,7 +82,7 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                 // Handle any errors
             }
         });
-        doctoreHolder.specialite.setText("Specialite : "+doctor.getSpecialite());
+        doctoreHolder.specialite.setText("Specialitate : "+doctor.getSpecialite());
         final String idPat = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         final String idDoc = doctor.getEmail();
         // doctoreHolder.image.setImageURI(Uri.parse("drawable-v24/ic_launcher_foreground.xml"));
@@ -96,7 +96,7 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Snackbar.make(t, "Demande envoyée", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(t, "Cerere trimisa", Snackbar.LENGTH_SHORT).show();
                             }
                         });
                 doctoreHolder.addDoc.setVisibility(View.INVISIBLE);

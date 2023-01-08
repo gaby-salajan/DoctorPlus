@@ -47,10 +47,10 @@ public class AppointementActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Hour note = documentSnapshot.toObject(Hour.class);
                     if(note != null){
-                        btn.setText("already choosen");
+                        btn.setText("Deja selectat");
                     }
                     else{
-                        btn.setText("confirme this hour");
+                        btn.setText("Confirma aceasta ora");
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

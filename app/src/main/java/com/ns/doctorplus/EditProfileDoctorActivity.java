@@ -144,7 +144,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EditProfileDoctorActivity.this, "Infos Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditProfileDoctorActivity.this, "Informatii actualizate", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -233,7 +233,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                                 });
                     }*/
                     else {
-                        Toast.makeText(EditProfileDoctorActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileDoctorActivity.this, "Incarcare esuata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

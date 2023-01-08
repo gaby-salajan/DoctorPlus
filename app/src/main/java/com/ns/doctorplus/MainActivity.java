@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.sign_in_button);
 
         TextView textView = (TextView) signInButton.getChildAt(0);
-        textView.setText("Or Sign in with Google");
+        textView.setText("Sign in cu Google");
 
         emailText= (EditText) findViewById(R.id.editText2);
         passwordText= (EditText) findViewById(R.id.editText);
@@ -103,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }else{
-                    Toast.makeText(MainActivity.this, "vous devez rensegner toutes les champs",
+                    Toast.makeText(MainActivity.this, "Trebuie sa completati toate campurile",
                             Toast.LENGTH_SHORT).show();
                     if(!password.equals(confirmPass)){
-                        Toast.makeText(MainActivity.this, "Confirm pass don't match password",
+                        Toast.makeText(MainActivity.this, "Paroala de confirmare nu corespunde cu parola",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.makeText(MainActivity.this, "Autentificare esuata",
                                             Toast.LENGTH_SHORT).show();
                                     updateUI(null);
 
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }else{
-                    Toast.makeText(MainActivity.this, "vous devez rensegnier toutes les champs",
+                    Toast.makeText(MainActivity.this, "Trebuie sa completati toate campurile",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -155,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
                     confirme.setVisibility(View.VISIBLE);
                     signUpBtn.setVisibility(View.VISIBLE);
                     loginBtn.setVisibility(View.INVISIBLE);
-                    creatBtn.setText("Back to login");
+                    creatBtn.setText("Inapoi la login");
                     signInButton.setVisibility(View.GONE);
                 }
                 else{
                     confirme.setVisibility(View.INVISIBLE);
                     signUpBtn.setVisibility(View.INVISIBLE);
                     loginBtn.setVisibility(View.VISIBLE);
-                    creatBtn.setText("Create Account");
+                    creatBtn.setText("Creeaza cont");
                     signInButton.setVisibility(View.VISIBLE);
                 }
             }

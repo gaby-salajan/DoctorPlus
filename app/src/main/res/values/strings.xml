@@ -1,36 +1,36 @@
 <resources>
     <string name="app_name">DoctorPlus</string>
-    <string name="main_activity_description">Discute avec tes mentors, tout simplement.</string>
+    <string name="main_activity_description">Programeaza-te si discuta cu doctorii.</string>
 
-    <string name="login">Connexion</string>
-    <string name="chat_with_mentor">Discute avec un mentor</string>
+    <string name="login">Conectare</string>
+    <string name="chat_with_mentor">Discuta cu un doctor</string>
 
     <!-- NOTIFICATION SERVICE -->
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="notification_title">"Vous avez reçu une notification"</string>
+    <string name="notification_title">"Ati primit o notificare"</string>
 
     <!-- MAIN ACTIVITY -->
-    <string name="error_not_connected">Vous devez vous connecter !</string>
-    <string name="error_authentication_canceled">Authentification annulée&#8230;</string>
-    <string name="error_no_internet">Aucune connexion internet !</string>
-    <string name="error_unknown_error">Une erreur inconnue s\'est produite&#8230;</string>
-    <string name="connection_succeed">Authentification réussie !</string>
-    <string name="button_login_text_logged">Afficher le profil</string>
-    <string name="button_login_text_not_logged">Connexion</string>
+    <string name="error_not_connected">Trebuie sa va autentificati</string>
+    <string name="error_authentication_canceled">Autentificare anulata &#8230;</string>
+    <string name="error_no_internet">Nu aveti conexiune la internet</string>
+    <string name="error_unknown_error">S-a produs o eroare necunoscuta&#8230;</string>
+    <string name="connection_succeed">Autentificare reusita</string>
+    <string name="button_login_text_logged">Afiseaza profilul</string>
+    <string name="button_login_text_not_logged">Conectare</string>
 
     <!-- LOGIN ACTIVITY -->
-    <string name="toolbar_title_login_activity">Votre Profil</string>
-    <string name="text_input_username">Nom d\'utilisateur</string>
-    <string name="text_view_email">Adresse email :</string>
-    <string name="button_update_account">Mettre à jour le nom d\'utilisateur</string>
-    <string name="button_delete_account">Supprimer mon compte</string>
-    <string name="button_sign_out_account">Déconnexion</string>
-    <string name="info_no_email_found">Auncune adresse email</string>
-    <string name="info_no_username_found">Aucun nom d\'utilisateur</string>
-    <string name="popup_message_confirmation_delete_account">Es-tu sûr(e) de vouloir supprimer ton compte ?</string>
-    <string name="popup_message_choice_yes">Oui !</string>
-    <string name="popup_message_choice_no">Non</string>
-    <string name="check_box_is_mentor">Etes-vous un mentor ?</string>
+    <string name="toolbar_title_login_activity">Profilul tau</string>
+    <string name="text_input_username">Nume de utilizator</string>
+    <string name="text_view_email">Adresa de email :</string>
+    <string name="button_update_account">Actualizati numele de utilizator</string>
+    <string name="button_delete_account">Sterge contul meu</string>
+    <string name="button_sign_out_account">Deconectare</string>
+    <string name="info_no_email_found">Nicio adresa de email</string>
+    <string name="info_no_username_found">Niciun nume de utilizator</string>
+    <string name="popup_message_confirmation_delete_account">Sigur doriti sa stergeti contul?</string>
+    <string name="popup_message_choice_yes">Da</string>
+    <string name="popup_message_choice_no">Nu</string>
+    <string name="check_box_is_mentor">Sunteti doctor?</string>
 
     <!-- MENTOR_CHAT ACTIVITY -->
     <string name="toolbar_title_mentor_chat_activity">Chats de discussions</string>
@@ -59,14 +59,14 @@
         <item>Hospitalisation</item>
     </string-array>
 
-    <string-array name="specialite_spinner">
-        <item>Dentiste</item>
-        <item>Médecin général</item>
+    <string-array name="speciality_spinner">
+        <item>Odontologie</item>
+        <item>Medicina generala</item>
         <item>ORL</item>
-        <item>Ophtalmologue</item>
-        <item>Pédiatre</item>
-        <item>Radiologue</item>
-        <item>Rhumatologue</item>
+        <item>Oftalmologie</item>
+        <item>Pediatrie</item>
+        <item>Radiologie</item>
+        <item>Reumatologie</item>
     </string-array>
 
     <string-array name="blood_spinner">

@@ -17,35 +17,39 @@
 
             <item
                 android:id="@+id/option_all"
-                android:title="all"
+                android:title="toate specialitatile"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_general"
-                android:title="général"
+                android:title="Medicina generala"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Dentiste"
-                android:title="Dentiste"
+                android:title="Odontologie"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_ORL"
                 android:title="ORL"
                 app:showAsAction="ifRoom" />
             <item
+                android:id="@+id/option_Gastro"
+                android:title="Gastroenterologie"
+                app:showAsAction="ifRoom" />
+            <item
                 android:id="@+id/option_Ophtalmologue"
-                android:title="Ophtalmologue"
+                android:title="Oftalmologie"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Pédiatre"
-                android:title="Pédiatre"
+                android:title="Pediatrie"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Radiologue"
-                android:title="Radiologue"
+                android:title="Radiologie"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/option_Rhumatologue"
-                android:title="Rhumatologue"
+                android:title="Reumatologie"
                 app:showAsAction="ifRoom" />
 
         </menu>

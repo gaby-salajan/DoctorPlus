@@ -48,8 +48,9 @@ public class PatientInfoActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 weightBtn.setText( ""+documentSnapshot.getString("weight"));
                 heightBtn.setText( ""+documentSnapshot.getString("height"));
-                if(documentSnapshot.getString("bloodType") != null)
-                specialiteList.setSelection(convertBloodToInt(documentSnapshot.getString("bloodType")));
+                if(documentSnapshot.getString("bloodType") != null){
+                    specialiteList.setSelection(convertBloodToInt(documentSnapshot.getString("bloodType")));
+                }
             }
         });
 
@@ -63,7 +64,7 @@ public class PatientInfoActivity extends AppCompatActivity {
                 Log.e("tag", "onClick: "+specialiteList.getTag() );
                 FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
                         .document(patient_email).set(map);
-                Toast.makeText(PatientInfoActivity.this,"Update Success!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(PatientInfoActivity.this,"Actualizare reusita",Toast.LENGTH_SHORT).show();
 
             }
         });

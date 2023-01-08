@@ -45,7 +45,7 @@ public class FirstSigninActivity extends AppCompatActivity {
 
         final Spinner specialiteList = (Spinner) findViewById(R.id.specialite_spinner);
         ArrayAdapter<CharSequence> adapterSpecialiteList = ArrayAdapter.createFromResource(this,
-                R.array.specialite_spinner, android.R.layout.simple_spinner_item);
+                R.array.speciality_spinner, android.R.layout.simple_spinner_item);
         adapterSpecialiteList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         specialiteList.setAdapter(adapterSpecialiteList);
         String newAccountType = spinner.getSelectedItem().toString();
