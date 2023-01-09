@@ -15,7 +15,7 @@
         <activity android:name="com.ns.doctorplus.MyCalendarDoctorActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.TestActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.AppointementActivity" android:exported="true"/>
-        <activity android:name="com.ns.doctorplus.FicheInfo" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.PrescriptionInfo" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.PatientInfoActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.DossierMedical" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.ChatActivity" android:exported="true"/>

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class FicheInfo extends AppCompatActivity {
+public class PrescriptionInfo extends AppCompatActivity {
     TextView t1 ,t2, t3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

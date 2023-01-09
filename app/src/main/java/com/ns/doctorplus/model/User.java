@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp;
 public class User {
     private String cnp;
     private String name;
-    private Timestamp birthDate;
+    private String birthDate;
     private String tel;
     private String address;
 
@@ -15,7 +15,7 @@ public class User {
     public User(){
         //need firebase
     }
-    public User(String cnp, String fullName, Timestamp birthDate, String tel, String address, String email, String type) {
+    public User(String cnp, String fullName, String birthDate, String tel, String address, String email, String type) {
         this.cnp = cnp;
         this.name = fullName;
         this.birthDate = birthDate;

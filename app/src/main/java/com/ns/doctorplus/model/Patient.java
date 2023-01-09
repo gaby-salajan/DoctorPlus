@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp;
 public class Patient {
     private String cnp;
     private String name;
-    private Timestamp birthDate;
+    private String birthDate;
     private String tel;
     private String address;
 
@@ -16,7 +16,7 @@ public class Patient {
         //needed for firebase
     }
 
-    public Patient(String cnp, String fullName, Timestamp birthDate, String tel, String address, String email) {
+    public Patient(String cnp, String fullName, String birthDate, String tel, String address, String email) {
         this.cnp = cnp;
         this.name = fullName;
         this.birthDate = birthDate;
@@ -27,7 +27,7 @@ public class Patient {
 
     }
 
-    public Patient(String name, String address, String tel, String email, Timestamp birthDate) {
+    public Patient(String name, String address, String tel, String email, String birthDate) {
         this.name = name;
         this.address = address;
         this.tel = tel;
@@ -43,11 +43,11 @@ public class Patient {
         this.cnp = cnp;
     }
 
-    public Timestamp getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

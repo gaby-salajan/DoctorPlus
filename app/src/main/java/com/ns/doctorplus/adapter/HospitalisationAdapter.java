@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ns.doctorplus.FicheInfo;
+import com.ns.doctorplus.PrescriptionInfo;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.File;
 
@@ -54,7 +54,7 @@ public class HospitalisationAdapter  extends FirestoreRecyclerAdapter<File,Hospi
     }
 
     private void openPage(Context wf, File m){
-        Intent i = new Intent(wf, FicheInfo.class);
+        Intent i = new Intent(wf, PrescriptionInfo.class);
         i.putExtra("dateCreated", m.getDateCreated().toString());
         i.putExtra("doctor",m.getDoctor());
         i.putExtra("description",m.getDescription());

@@ -65,12 +65,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String cnp, fullname, tel, address;
-                String type;
-                Timestamp birthDate;
+                String birthDate;
 
                 cnp = cnpField.getText().toString();
                 fullname = fullNameField.getText().toString();
-                birthDate = new Timestamp(new Date(birthDateField.getText().toString()));
+                birthDate =birthDateField.getText().toString();
                 tel = telField.getText().toString();
                 address = addressField.getText().toString();
 

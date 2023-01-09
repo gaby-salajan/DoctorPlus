@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class FileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private EditText maladie;
+    private EditText disease;
     private EditText descriptionField;
     private EditText treatmentField;
     private Spinner fileType;
@@ -29,7 +29,7 @@ public class FileActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
-        maladie = findViewById(R.id.file_disease);
+        disease = findViewById(R.id.file_disease);
         descriptionField = findViewById(R.id.file_description);
         treatmentField = findViewById(R.id.file_treatment);
         fileType = findViewById(R.id.file_type_spinner);
@@ -62,7 +62,7 @@ public class FileActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void addFiche(){
-        String maladieFiche = maladie.getText().toString();
+        String maladieFiche = disease.getText().toString();
         String descriptionFieldFiche =  descriptionField.getText().toString();
         String traitemenfiche = treatmentField.getText().toString();
         String typeFiche = fileType.getSelectedItem().toString();
