@@ -26,8 +26,10 @@ public class AppointementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointement);
         lis = findViewById(R.id.listDate);
+
         String patient_email = getIntent().getStringExtra("key1");
         String day = getIntent().getStringExtra("key2");
+
         final CollectionReference addRequest = db.collection("Doctor").document(patient_email).collection("calendar").document(day).collection("hour");
 
 

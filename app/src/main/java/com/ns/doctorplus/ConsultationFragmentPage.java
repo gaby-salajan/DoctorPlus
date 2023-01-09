@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ns.doctorplus.adapter.ConsultationAdapter;
-import com.ns.doctorplus.model.Fiche;
+import com.ns.doctorplus.model.File;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -20,7 +20,7 @@ import com.google.firebase.firestore.Query;
 public class ConsultationFragmentPage extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference FicheRef;
+    private CollectionReference FileRef;
     private ConsultationAdapter adapter;
     View result;
 
@@ -46,11 +46,11 @@ public class ConsultationFragmentPage extends Fragment {
     private void setUpRecyclerView() {
 
         String email_id = getActivity().getIntent().getExtras().getString("patient_email");
-        FicheRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
-        Query query = FicheRef.whereEqualTo("type", "Consultation");
+        FileRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
+        Query query = FileRef.whereEqualTo("type", "Consultation");
 
-        FirestoreRecyclerOptions<Fiche> options = new FirestoreRecyclerOptions.Builder<Fiche>()
-                .setQuery(query, Fiche.class)
+        FirestoreRecyclerOptions<File> options = new FirestoreRecyclerOptions.Builder<File>()
+                .setQuery(query, File.class)
                 .build();
 
         adapter = new ConsultationAdapter(options);

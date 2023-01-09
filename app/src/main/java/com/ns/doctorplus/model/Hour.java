@@ -2,7 +2,7 @@ package com.ns.doctorplus.model;
 
 public class Hour {
     private String patient;
-    private String choosen;
+    private String selected;
     private String patientName;
 
     public String getPatientName() {
@@ -15,7 +15,7 @@ public class Hour {
 
     public Hour(String patient) {
         this.patient = patient;
-        choosen = "false";
+        selected = "false";
     }
     public Hour(){
 
@@ -28,11 +28,11 @@ public class Hour {
         this.patient = patient;
     }
 
-    public String getChoosen() {
-        return choosen;
+    public String getselected() {
+        return selected;
     }
 
-    public void setChoosen(String choosen) {
-        this.choosen = choosen;
+    public void setselected(String selected) {
+        this.selected = selected;
     }
 }

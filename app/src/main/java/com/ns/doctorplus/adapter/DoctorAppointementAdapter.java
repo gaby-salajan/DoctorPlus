@@ -52,7 +52,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
                 apointementInformation.setType("Accepted");
                 FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
-                FirebaseFirestore.getInstance().document(apointementInformation.getChemin()).update("type","Accepted");
+                FirebaseFirestore.getInstance().document(apointementInformation.getInfo()).update("type","Accepted");
                 FirebaseFirestore.getInstance().collection("Doctor").document(apointementInformation.getDoctorId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
 
@@ -85,7 +85,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
                 apointementInformation.setType("Refused");
                 FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
-                FirebaseFirestore.getInstance().document(apointementInformation.getChemin()).delete();
+                FirebaseFirestore.getInstance().document(apointementInformation.getInfo()).delete();
                 getSnapshots().getSnapshot(position).getReference().delete();
             }
         });

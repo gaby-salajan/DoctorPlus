@@ -1,7 +1,7 @@
 package com.ns.doctorplus.model;
 
 public class ApointementInformation {
-    private  String patientName,time,doctorId,doctorName,patientId,type,apointementType,chemin;
+    private  String patientName,time,doctorId,doctorName,patientId,type,apointementType,info;
     private long slot;
 
     public String getApointementType() {
@@ -12,12 +12,12 @@ public class ApointementInformation {
         this.apointementType = apointementType;
     }
 
-    public String getChemin() {
-        return chemin;
+    public String getInfo() {
+        return info;
     }
 
-    public void setChemin(String chemin) {
-        this.chemin = chemin;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public String getType() {

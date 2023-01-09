@@ -3,31 +3,27 @@ package com.ns.doctorplus.model;
 public class TimeSlot {
     private Long slot;
     private String type ;
-    private String chemin;
+    private String info;
 
-    public String getChemin() {
-        return chemin;
+    public TimeSlot() {}
+
+    public String getInfo() {
+        return info;
     }
-
-    public void setChemin(String chemin) {
-        this.chemin = chemin;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
-    }
-
-    public TimeSlot() {
     }
 
     public Long getSlot() {
         return slot;
     }
-
     public void setSlot(Long slot) {
         this.slot = slot;
     }

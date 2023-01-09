@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFiltred.DoctoreHolder2> implements Filterable {
-    public static boolean specialiteSearch = false;
+    public static boolean specialitySearch = false;
     static String doc;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static CollectionReference addRequest = db.collection("Request");
@@ -82,7 +82,7 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                 // Handle any errors
             }
         });
-        doctoreHolder.specialite.setText("Specialitate : "+doctor.getSpecialite());
+        doctoreHolder.specialite.setText("Specialitate : "+doctor.getSpeciality());
         final String idPat = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         final String idDoc = doctor.getEmail();
         // doctoreHolder.image.setImageURI(Uri.parse("drawable-v24/ic_launcher_foreground.xml"));
@@ -132,13 +132,13 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                 } else {
                     List<Doctor> filteredList = new ArrayList<>();
                     for(Doctor tube: mTubeList){
-                        if(specialiteSearch == false) {
+                        if(specialitySearch == false) {
                             if (tube.getName().toLowerCase().contains(pattern) || tube.getName().toLowerCase().contains(pattern)) {
                                 filteredList.add(tube);
                             }
                         }
                         else{
-                            if (tube.getSpecialite().toLowerCase().contains(pattern) || tube.getSpecialite().toLowerCase().contains(pattern)) {
+                            if (tube.getSpeciality().toLowerCase().contains(pattern) || tube.getSpeciality().toLowerCase().contains(pattern)) {
                                 filteredList.add(tube);
                             }
                         }

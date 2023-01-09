@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         } else {
-                            Intent k = new Intent(MainActivity.this, FirstSigninActivity.class);
+                            Intent k = new Intent(MainActivity.this, RegisterActivity.class);
                             startActivity(k);
                         }
                     }

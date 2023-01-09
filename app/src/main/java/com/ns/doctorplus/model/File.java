@@ -4,32 +4,32 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 
-public class Fiche {
-    private String maladie;
+public class File {
+    private String disease;
     private String description;
-    private String traitement;
+    private String treatment;
     private String type;
     private Date dateCreated;
     private String doctor;
 
-    public Fiche(){
+    public File(){
 
     }
 
-    public Fiche(String maladie, String description, String traitement, String type, String doctor) {
-        this.maladie = maladie;
+    public File(String disease, String description, String treatment, String type, String doctor) {
+        this.disease = disease;
         this.description = description;
-        this.traitement = traitement;
+        this.treatment = treatment;
         this.type = type;
         this.doctor = doctor;
     }
 
-    public String getMaladie() {
-        return maladie;
+    public String getDisease() {
+        return disease;
     }
 
-    public void setMaladie(String maladie) {
-        this.maladie = maladie;
+    public void setDisease(String disease) {
+        this.disease = disease;
     }
 
     public String getDescription() {
@@ -40,12 +40,12 @@ public class Fiche {
         this.description = description;
     }
 
-    public String getTraitement() {
-        return traitement;
+    public String getTreatment() {
+        return treatment;
     }
 
-    public void setTraitement(String traitement) {
-        this.traitement = traitement;
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
 
     public String getType() {

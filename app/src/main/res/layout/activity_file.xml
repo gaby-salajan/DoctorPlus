@@ -5,35 +5,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".FicheActivity">
+    tools:context=".FileActivity">
 
     <EditText
-        android:id="@+id/fiche_maladie"
+        android:id="@+id/file_disease"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:textColor="#22BE87"
         android:textColorHint="#22BE87"
-        android:hint="Maladie" />
+        android:hint="Boala" />
 
     <EditText
-        android:id="@+id/fiche_description"
+        android:id="@+id/file_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:textColor="#22BE87"
         android:textColorHint="#22BE87"
-        android:hint="Description"
+        android:hint="Descriere"
         />
 
     <EditText
-        android:id="@+id/fiche_traitement"
+        android:id="@+id/file_treatment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:textColor="#22BE87"
         android:textColorHint="#22BE87"
-        android:hint="Traitement"
+        android:hint="Tratament"
         />
 
     <TextView
@@ -41,12 +41,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#22BE87"
-        android:text="Type de fiche"
+        android:text="Tip de fisa"
         android:layout_marginTop="16dp"
         android:textSize="16sp"/>
 
     <Spinner
-        android:id="@+id/fiche_type_spinner"
+        android:id="@+id/file_type_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp"
@@ -60,11 +60,11 @@
         android:layout_height="0dp"
         android:gravity="center|bottom">
     <Button
-        android:id="@+id/button_add_fiche"
+        android:id="@+id/button_add_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_green"
-        android:text="Ajouter" />
+        android:text="Creeaza fisa" />
     </LinearLayout>
 
 

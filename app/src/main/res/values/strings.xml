@@ -54,7 +54,7 @@
     <string name="Failed_to_Load_data">Please check your Internet Connection</string>
     <string name="NO_RESULT">No matching results</string>
 
-    <string-array name="fiche_type">
+    <string-array name="file_type">
         <item>Consultation</item>
         <item>Hospitalisation</item>
     </string-array>

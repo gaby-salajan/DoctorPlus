@@ -46,7 +46,7 @@ public class DossierMedical extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dossier_medical);
+        setContentView(R.layout.activity_medical_folder);
         ImageView image = findViewById(R.id.imageView2);
         patient_email = getIntent().getStringExtra("patient_email");
         this.configureViewPager();
@@ -163,7 +163,7 @@ public class DossierMedical extends AppCompatActivity {
     }
 
     private void openPatientFiche(){
-        Intent intent = new Intent(this, FicheActivity.class);
+        Intent intent = new Intent(this, FileActivity.class);
         String patient_name = getIntent().getStringExtra("patient_name");
         String patient_email = getIntent().getStringExtra("patient_email");
         intent.putExtra("patient_email", patient_email);

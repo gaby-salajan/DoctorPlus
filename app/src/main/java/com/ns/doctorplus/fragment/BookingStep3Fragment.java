@@ -58,7 +58,7 @@ public class BookingStep3Fragment extends Fragment {
         apointementInformation.setDoctorName(Common.CurrentDoctorName);
         apointementInformation.setPatientName(Common.CurrentUserName);
         apointementInformation.setPatientId(Common.CurrentUserid);
-        apointementInformation.setChemin("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+        apointementInformation.setInfo("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
         apointementInformation.setType("Checked");
         apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                 .append("at")

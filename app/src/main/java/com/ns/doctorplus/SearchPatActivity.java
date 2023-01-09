@@ -97,7 +97,7 @@ public class SearchPatActivity extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                DoctorAdapterFiltred.specialiteSearch = false;
+                DoctorAdapterFiltred.specialitySearch = false;
                adapter.getFilter().filter(newText);
                 return false;
             }
@@ -109,39 +109,39 @@ public class SearchPatActivity extends AppCompatActivity {
         //3 - Handle actions on menu items
         switch (item.getItemId()) {
             case R.id.option_all:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("");
                 return true;
             case R.id.option_general:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Medicina generala");
                 return true;
             case R.id.option_Dentiste:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Odontologie");
                 return true;
             case R.id.option_Ophtalmologue:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Oftalmologie");
                 return true;
             case R.id.option_ORL:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("ORL");
                 return true;
             case R.id.option_Gastro:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Gastroenterologie");
                 return true;
             case R.id.option_Pédiatre:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Pediatrie");
                 return true;
             case R.id.option_Radiologue:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Radiologie");
                 return true;
             case R.id.option_Rhumatologue:
-                DoctorAdapterFiltred.specialiteSearch = true;
+                DoctorAdapterFiltred.specialitySearch = true;
                 adapter.getFilter().filter("Reumatologie");
                 return true;
             default:

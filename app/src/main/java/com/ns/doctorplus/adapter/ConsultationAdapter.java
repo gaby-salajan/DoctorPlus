@@ -13,21 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ns.doctorplus.FicheInfo;
 import com.ns.doctorplus.R;
-import com.ns.doctorplus.model.Fiche;
+import com.ns.doctorplus.model.File;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ConsultationAdapter  extends FirestoreRecyclerAdapter<Fiche,ConsultationAdapter.FicheHolder>{
+public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File,ConsultationAdapter.FicheHolder>{
 
-    public ConsultationAdapter(@NonNull FirestoreRecyclerOptions<Fiche> options) {
+    public ConsultationAdapter(@NonNull FirestoreRecyclerOptions<File> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull FicheHolder holder, int position, @NonNull final Fiche model) {
+    protected void onBindViewHolder(@NonNull FicheHolder holder, int position, @NonNull final File model) {
         FirebaseFirestore.getInstance().document("Doctor/" + model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -53,7 +53,7 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<Fiche,Consult
         }
     }
 
-    private void openPage(Context wf,Fiche m){
+    private void openPage(Context wf, File m){
         Intent i = new Intent(wf, FicheInfo.class);
         i.putExtra("dateCreated", m.getDateCreated().toString());
         i.putExtra("doctor",m.getDoctor());

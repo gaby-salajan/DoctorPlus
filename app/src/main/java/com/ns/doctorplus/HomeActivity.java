@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ns.doctorplus.Common.Common;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,10 +21,14 @@ public class HomeActivity extends AppCompatActivity {
     Button BtnRequst;
     Button profile;
     Button appointment;
+    TextView welcomeText;
+    String welcome = "Buna ziua, ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         appointment = findViewById(R.id.appointement2);
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +83,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        welcomeText = findViewById(R.id.welcomeText);
         Common.CurrentUserid= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         FirebaseFirestore.getInstance().collection("User").document(Common.CurrentUserid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Common.CurrentUserName = documentSnapshot.getString("name");
+                welcomeText.setText(welcome + Common.CurrentUserName);
             }
         });
 

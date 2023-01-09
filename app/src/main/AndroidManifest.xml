@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ns.doctorplus">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,30 +11,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.ns.doctorplus.MyCalendarDoctorActivity" />
-        <activity android:name="com.ns.doctorplus.TestActivity" />
-        <activity android:name="com.ns.doctorplus.AppointementActivity" />
-        <activity android:name="com.ns.doctorplus.FicheInfo" />
-        <activity android:name="com.ns.doctorplus.PatientInfoActivity" />
-        <activity android:name="com.ns.doctorplus.DossierMedical" />
-        <activity android:name="com.ns.doctorplus.ChatActivity" />
-        <activity android:name="com.ns.doctorplus.PatientRequestPage" />
-        <activity android:name="com.ns.doctorplus.DoctorHomeActivity" />
-        <activity android:name="com.ns.doctorplus.EditProfileDoctorActivity" />
-        <activity android:name="com.ns.doctorplus.ConfirmedAppointmensActivity" />
-        <activity android:name="com.ns.doctorplus.PatientAppointementsActivity" />
-        <activity android:name="com.ns.doctorplus.ProfilePatientActivity" />
-        <activity android:name="com.ns.doctorplus.MyDoctorsAvtivity" />
-        <activity android:name="com.ns.doctorplus.ProfileDoctorActivity" />
-        <activity android:name="com.ns.doctorplus.EditProfilePatientActivity" />
-        <activity android:name="com.ns.doctorplus.DoctorAppointementActivity" />
-        <activity android:name="com.ns.doctorplus.FicheActivity" />
-        <activity android:name="com.ns.doctorplus.MyPatientsActivity" />
-        <activity android:name="com.ns.doctorplus.SearchPatActivity" />
-        <activity android:name="com.ns.doctorplus.FirstSigninActivity" />
-        <activity android:name="com.ns.doctorplus.HomeActivity" />
-        <activity android:name="com.ns.doctorplus.MainActivity">
+        android:theme="@style/Theme.DoctorPlus">
+        <activity android:name="com.ns.doctorplus.MyCalendarDoctorActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.TestActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.AppointementActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.FicheInfo" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.PatientInfoActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.DossierMedical" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.ChatActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.PatientRequestPage" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.DoctorHomeActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.EditProfileDoctorActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.ConfirmedAppointmensActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.PatientAppointementsActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.ProfilePatientActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.MyDoctorsAvtivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.ProfileDoctorActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.EditProfilePatientActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.DoctorAppointementActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.FileActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.MyPatientsActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.SearchPatActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.RegisterActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.HomeActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

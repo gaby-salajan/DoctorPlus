@@ -9,8 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ns.doctorplus.Common.Common;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,6 +30,10 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
     Button BtnRequst;
     Button listPatients;
     Button appointementBtn;
+
+    TextView welcomeText;
+    String welcome = "Buna ziua, Dr. ";
+
     @OnClick(R.id.profile)
     void profileBtnClick(){
         Intent k = new Intent(DoctorHomeActivity.this, ProfileDoctorActivity.class);
@@ -43,7 +51,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
+        setContentView(R.layout.activity_doctor_home);
         unbinder = ButterKnife.bind(this,this);
         Common.CurreentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         Common.CurrentUserType = "doctor";
@@ -51,6 +59,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
         appointementBtn = findViewById(R.id.appointement);
+
         SignOutBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +93,14 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
+        welcomeText = findViewById(R.id.welcomeTextDoctor);
+        FirebaseFirestore.getInstance().collection("User").document(Common.CurreentDoctor).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Common.CurrentUserName = documentSnapshot.getString("name");
+                welcomeText.setText(welcome + Common.CurrentUserName);
+            }
+        });
     }
 
     public void showDatePickerDialog(Context wf){

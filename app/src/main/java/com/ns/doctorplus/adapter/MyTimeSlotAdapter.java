@@ -123,7 +123,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                                 apointementInformation.setApointementType(Common.Currentaappointementatype);
                                 apointementInformation.setDoctorId(Common.CurreentDoctor);
                                 apointementInformation.setDoctorName(Common.CurrentDoctorName);
-                                apointementInformation.setChemin("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+                                apointementInformation.setInfo("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
                                 apointementInformation.setType("full");
                                 apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                                         .append(" - ")

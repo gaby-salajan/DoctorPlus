@@ -10,7 +10,7 @@ public class FicheInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fiche_info);
+        setContentView(R.layout.activity_file_info);
         t1=findViewById(R.id.textView2);
         t2=findViewById(R.id.textView4);
         t3=findViewById(R.id.textView5);

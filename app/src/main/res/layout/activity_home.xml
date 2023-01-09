@@ -12,7 +12,7 @@
         android:layout_width="211dp"
         android:layout_height="45dp"
         android:background="@drawable/button_danger"
-        android:text="SignOut"
+        android:text="Deconecteaza-te"
         android:textColor="#C62828"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,9 +34,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome User"
+            android:text="Welcome,"
             android:textColor="#ffffff"
             android:textSize="26sp" />
 

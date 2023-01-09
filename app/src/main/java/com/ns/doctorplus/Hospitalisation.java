@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ns.doctorplus.adapter.HospitalisationAdapter;
-import com.ns.doctorplus.model.Fiche;
+import com.ns.doctorplus.model.File;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,8 +48,8 @@ public class Hospitalisation extends Fragment {
         FicheRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
         Query query = FicheRef.whereEqualTo("type", "Hospitalisation");
 
-        FirestoreRecyclerOptions<Fiche> options = new FirestoreRecyclerOptions.Builder<Fiche>()
-                .setQuery(query, Fiche.class)
+        FirestoreRecyclerOptions<File> options = new FirestoreRecyclerOptions.Builder<File>()
+                .setQuery(query, File.class)
                 .build();
 
         adapter = new HospitalisationAdapter(options);

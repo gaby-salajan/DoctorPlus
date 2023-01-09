@@ -2,24 +2,22 @@ package com.ns.doctorplus.model;
 
 public class Patient {
     private String name;
-    private String adresse;
+    private String address;
     private String tel;
     private String email;
-    private String dateNaissance;
-    private String situationFamiliale;
+    private String birthDate;
 
 
     public Patient(){
         //needed for firebase
     }
 
-    public Patient(String name, String adresse, String tel, String email, String dateNaissance, String situationFamiliale) {
+    public Patient(String name, String address, String tel, String email, String birthDate) {
         this.name = name;
-        this.adresse = adresse;
+        this.address = address;
         this.tel = tel;
         this.email = email;
-        this.dateNaissance = dateNaissance;
-        this.situationFamiliale = situationFamiliale;
+        this.birthDate = birthDate;
     }
 
     public String getName() {
@@ -30,12 +28,12 @@ public class Patient {
         this.name = name;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getaddress() {
+        return address;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
     public String getTel() {
@@ -54,19 +52,12 @@ public class Patient {
         this.email = email;
     }
 
-    public String getDateNaissance() {
-        return dateNaissance;
+    public String getbirthDate() {
+        return birthDate;
     }
 
-    public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setbirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public String getSituationFamiliale() {
-        return situationFamiliale;
-    }
-
-    public void setSituationFamiliale(String situationFamiliale) {
-        this.situationFamiliale = situationFamiliale;
-    }
 }
