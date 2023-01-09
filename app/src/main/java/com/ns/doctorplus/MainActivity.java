@@ -242,7 +242,13 @@ public class MainActivity extends AppCompatActivity {
                                     if(user.getType().equals("Patient")){
                                         Intent k = new Intent(MainActivity.this, HomeActivity.class);
                                         startActivity(k);
-                                    }else{
+                                    }else if(user.getType().equals("Admin")){
+                                        Intent k = new Intent(MainActivity.this, AdminHomeActivity.class);
+                                        startActivity(k);
+                                    }else if(user.getType().equals("Asistent")){
+                                        Intent k = new Intent(MainActivity.this, DoctorHomeActivity.class);
+                                        startActivity(k);
+                                    }else {
                                         Intent k = new Intent(MainActivity.this, DoctorHomeActivity.class);
                                         startActivity(k);
                                         //Snackbar.make(findViewById(R.id.main_layout), "Doctor interface entraint de realisation", Snackbar.LENGTH_SHORT).show();

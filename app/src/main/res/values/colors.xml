@@ -3,6 +3,7 @@
     <color name="colorPrimary">#1a9792</color>
     <color name="colorPrimaryDark">#116460</color>
     <color name="colorAccent">#FFFFFF</color>
+    <color name="verdeDeschis">#117B99</color>
 
     <color name="colorSecondary">#7CECA9</color>
     <!-- Array of colors that will be used by ViewPager as background colors -->
