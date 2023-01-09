@@ -1,14 +1,29 @@
 package com.ns.doctorplus.model;
 
+import com.google.firebase.Timestamp;
+
 public class User {
+    private String cnp;
     private String name;
-    private String address;
+    private Timestamp birthDate;
     private String tel;
+    private String address;
+
     private String email;
     private String type;
 
     public User(){
         //need firebase
+    }
+    public User(String cnp, String fullName, Timestamp birthDate, String tel, String address, String email, String type) {
+        this.cnp = cnp;
+        this.name = fullName;
+        this.birthDate = birthDate;
+        this.tel = tel;
+        this.address = address;
+
+        this.email = email;
+        this.type = type;
     }
 
     public User(String name, String address, String tel, String email,String type) {

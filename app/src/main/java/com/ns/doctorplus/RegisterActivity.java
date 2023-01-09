@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.firebase.Timestamp;
+import java.util.Date;
 import com.ns.doctorplus.fireStoreApi.PatientHelper;
 import com.ns.doctorplus.fireStoreApi.UserHelper;
 
@@ -18,9 +20,12 @@ import java.text.SimpleDateFormat;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
-    private EditText fullName;
-    private TextView birthDate;
-    private EditText teL;
+    private EditText cnpField;
+    private EditText fullNameField;
+    private TextView birthDateField;
+    private EditText telField;
+    private EditText addressField;
+
     private Button btn;
 
     public void showDatePickDialog(){
@@ -32,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         picker.addOnPositiveButtonClickListener(selection -> {
             @SuppressLint("SimpleDateFormat")
             SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
-            birthDate.setText(simpleFormat.format(selection));
+            birthDateField.setText(simpleFormat.format(selection));
         });
         picker.show(getSupportFragmentManager(), "DATE_PICKER");
 
@@ -43,11 +48,13 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btn = (Button) findViewById(R.id.confirmBtn);
-        fullName = (EditText) findViewById(R.id.registerFullName);
-        birthDate = (TextView) findViewById(R.id.registerBirthDate);
-        teL = (EditText) findViewById(R.id.registerTel);
+        cnpField = (EditText) findViewById(R.id.registerCNP);
+        fullNameField = (EditText) findViewById(R.id.registerFullName);
+        birthDateField = (TextView) findViewById(R.id.registerBirthDate);
+        telField = (EditText) findViewById(R.id.registerTel);
+        addressField = (EditText) findViewById(R.id.registerAddress);
 
-        birthDate.setOnClickListener(view -> {
+        birthDateField.setOnClickListener(view -> {
             showDatePickDialog();
         });
 
@@ -57,13 +64,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String fullname, birtDay, tel, type;
-                fullname = fullName.getText().toString();
-                birtDay = birthDate.getText().toString();
-                tel = teL.getText().toString();
-                type = "Patient";
-                UserHelper.addUser(fullname, birtDay, tel, type);
-                PatientHelper.addPatient(fullname, "adress", tel);
+                String cnp, fullname, tel, address;
+                String type;
+                Timestamp birthDate;
+
+                cnp = cnpField.getText().toString();
+                fullname = fullNameField.getText().toString();
+                birthDate = new Timestamp(new Date(birthDateField.getText().toString()));
+                tel = telField.getText().toString();
+                address = addressField.getText().toString();
+
+                UserHelper.addUser(cnp, fullname, birthDate, tel, address, "Patient");
+                PatientHelper.addPatient(cnp, fullname, birthDate, tel, address);
                 System.out.println("Add patient " + fullname + " to patient collection");
 
                 //DoctorHelper.addDoctor(fullname, "adress", tel, specialite);
