@@ -1,7 +1,5 @@
 package com.ns.doctorplus.model;
 
-import com.google.firebase.Timestamp;
-
 public class User {
     private String cnp;
     private String name;

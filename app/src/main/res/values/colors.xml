@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1a9792</color>
-    <color name="colorPrimaryDark">#116460</color>
+    <color name="colorPrimary">#61C58E</color>
+    <color name="colorPrimaryDark">#278580</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="verdeDeschis">#117B99</color>
-
+    <color name="textColor">#FFFFFF</color>
     <color name="colorSecondary">#7CECA9</color>
     <!-- Array of colors that will be used by ViewPager as background colors -->
     <array name="colorPagesViewPager">

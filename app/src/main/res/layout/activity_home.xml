@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/home_background"
     tools:context=".HomeActivity">
-
 
     <Button
         android:id="@+id/signOutBtn"
-        android:layout_width="211dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:background="@drawable/button_danger"
-        android:text="Deconecteaza-te"
-        android:textColor="#C62828"
+        android:text="Deconectare"
+        android:textColor="#CA3F3F"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <LinearLayout
         android:id="@+id/view"
@@ -37,99 +37,97 @@
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome,"
+            android:text="Buna ziua, user"
             android:textColor="#ffffff"
             android:textSize="26sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose an option"
+            android:layout_marginTop="5dp"
+            android:text="Cu ce va putem ajuta azi?"
             android:textColor="#ffffff"
             android:textSize="16sp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnRequst"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginBottom="237dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/button_home"
-        android:text="Medical Folder"
-        android:textColor="#22BE87"
-        android:textSize="16sp"
+        android:text="Dosar Medical"
+        android:textColor="@color/textColor"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@+id/myDoctors"
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/myDoctors"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="43dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/button_home"
-        android:text="My Doctors"
-        android:textColor="#22BE87"
+        android:text="Doctorii Mei"
+        android:textColor="@color/textColor"
         android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.859"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.169" />
 
     <Button
         android:id="@+id/appointement2"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginBottom="98dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
         android:background="@drawable/button_home"
-        android:text="Appointement"
-        android:textColor="#22BE87"
-        android:textSize="13sp"
+        android:text="Programari"
+        android:textColor="@color/textColor"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.671" />
+        app:layout_constraintVertical_bias="0.833" />
 
     <Button
         android:id="@+id/profile"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginBottom="98dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
         android:background="@drawable/button_home"
-        android:text="Profile"
-        android:textColor="#22BE87"
-        android:textSize="16sp"
+        android:text="Profilul Meu"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.671" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBtn"
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/searchBtn"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginBottom="237dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
         android:background="@drawable/button_home"
-        android:text="Search"
-        android:textColor="#22BE87"
-        android:textSize="16sp"
+        android:text="Cautare Doctori"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintVertical_bias="0.169" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.ns.doctorplus.model;
 
 public class Doctor {
+    private String cnp;
     private String name;
     private String address;
     private String tel;
