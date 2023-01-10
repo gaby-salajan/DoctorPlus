@@ -45,7 +45,7 @@ public class SearchPatActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.serachPatRecycle);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Query query = doctorRef.orderBy("name", Query.Direction.DESCENDING);
+        Query query = doctorRef.orderBy("name", Query.Direction.ASCENDING);
 
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -28,6 +28,10 @@ import butterknife.Unbinder;
 public class AdminHomeActivity extends AppCompatActivity {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference adminRef = db.collection("Admin");
+    private CollectionReference doctorRef = db.collection("Doctor");
+    private CollectionReference patientRef = db.collection("Patient");
+    private CollectionReference userRef = db.collection("User");
+
     static String admin;
     Button btnSearch;
     Button btnListAll;
@@ -58,10 +62,10 @@ public class AdminHomeActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.serachPatRecycle);
+        RecyclerView recyclerView = findViewById(R.id.searchUserRecycle);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Query query = adminRef.orderBy("name", Query.Direction.DESCENDING);
+        Query query = userRef.orderBy("name", Query.Direction.ASCENDING);
 
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

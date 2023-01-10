@@ -105,7 +105,7 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
         doctoreHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doc= doctor.getEmail();
+                doc = doctor.getEmail();
                 Common.CurreentDoctor = doctor.getEmail();
                 Common.CurrentDoctorName = doctor.getName();
                 Common.CurrentPhone = doctor.getTel();

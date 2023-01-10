@@ -11,25 +11,25 @@
         android:id="@+id/signOutBtn"
         android:layout_width="211dp"
         android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_danger"
-        android:text="Deconecteaza-te"
+        android:text="Deconectare"
         android:textColor="#C62828"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
+        app:layout_constraintTop_toBottomOf="@+id/listAllBtn" />
 
     <LinearLayout
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="215dp"
+        android:layout_height="100dp"
         android:background="@drawable/rectangle_round"
         android:elevation="6dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -54,9 +54,10 @@
         android:id="@+id/searchBtn"
         android:layout_width="100dp"
         android:layout_height="46dp"
+        android:layout_marginRight="3dp"
         android:background="@drawable/button_home"
         android:text="Cautare"
-        android:textColor="#22BE87"
+        android:textColor="@color/textColor"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,15 +71,14 @@
         android:layout_width="211dp"
         android:layout_height="60dp"
 
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_home"
         android:text="Toate conturile"
-        android:textColor="#22BE87"
+        android:textColor="@color/textColor"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintTop_toBottomOf="@+id/searchUserRecycle" />
 
     <EditText
         android:id="@+id/editText2"
@@ -98,23 +98,13 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0" />
 
-    <LinearLayout
-        android:id="@+id/id_show"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchUserRecycle"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#F4F3F3"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
+        android:layout_height="360dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        tools:actionBarNavMode="standard"
-        tools:context=".SearchPatActivity">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/serachPatRecycle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

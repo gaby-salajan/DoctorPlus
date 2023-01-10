@@ -35,13 +35,10 @@ import java.util.List;
 import java.util.Map;
 
 public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltred.AdminHolder2> implements Filterable {
-    public static boolean specialitySearch = false;
-    static String doc;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static CollectionReference addRequest = db.collection("Request");
     private List<User> mTubeList;
     private List<User> mTubeListFiltered;
-    StorageReference pathReference ;
 
 
     public AdminAdapterFiltred(List<User> tubeList){
@@ -52,8 +49,7 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
     @NonNull
     @Override
     public AdminHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_item,
-                parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_item, parent, false);
         return new AdminHolder2(v);
     }
 
@@ -62,9 +58,10 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
         final User user = mTubeListFiltered.get(i);
         final TextView name = adminHolder.name ;
         adminHolder.name.setText(user.getName());
+        adminHolder.role.setText("Rol : "+ user.getType());
+        adminHolder.email.setText("Email : "+ user.getEmail());
+        adminHolder.cnp.setText("CNP : "+ user.getCnp());
 
-
-        adminHolder.occupation.setText("Rol : "+ user.getType());
         final String idPat = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         final String mail = user.getEmail();
 
@@ -77,7 +74,6 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
                 //Common.CurrentDoctorName = doctor.getName();
                 //Common.CurrentPhone = doctor.getTel();
                 //openPage(v.getContext());
-
             }
         });
 
@@ -99,15 +95,8 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
                 } else {
                     List<User> filteredList = new ArrayList<>();
                     for(User tube: mTubeList){
-                        if(specialitySearch == false) {
-                            if (tube.getName().toLowerCase().contains(pattern) || tube.getName().toLowerCase().contains(pattern)) {
-                                filteredList.add(tube);
-                            }
-                        }
-                        else{
-                            if (tube.getEmail().toLowerCase().contains(pattern) || tube.getEmail().toLowerCase().contains(pattern)) {
-                                filteredList.add(tube);
-                            }
+                        if (tube.getName().toLowerCase().contains(pattern) || tube.getName().toLowerCase().contains(pattern)) {
+                            filteredList.add(tube);
                         }
                     }
                     mTubeListFiltered = filteredList;
@@ -129,7 +118,7 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
 
         Button selectBtn;
         TextView name;
-        TextView occupation;
+        TextView role;
         TextView email;
         TextView cnp;
 
@@ -137,7 +126,7 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
             super(itemView);
             selectBtn = itemView.findViewById(R.id.selectBtn);
             name = itemView.findViewById(R.id.admin_view_name);
-            occupation = itemView.findViewById(R.id.admin_view_role);
+            role = itemView.findViewById(R.id.admin_view_role);
             email = itemView.findViewById(R.id.admin_view_mail);
             cnp = itemView.findViewById(R.id.admin_view_cnp);
         }
