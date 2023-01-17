@@ -80,13 +80,13 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
             }
         });
 
-        if (apointementInformation.getApointementType().equals("Consultation")) {
-            //patientAppointmentsHolder.appointementType.setBackgroundColor((patientAppointmentsHolder.type.getContext().getResources().getColor(R.color.colorPrimaryDark)));
-            patientAppointmentsHolder.appointementType.setBackground(patientAppointmentsHolder.appointementType.getContext().getResources().getDrawable(R.drawable.button_radius_primary_color));
-        }
-        if (apointementInformation.getType().equals("Accepted")) {
+//        if (apointementInformation.getApointementType().equals("Consultatie")) {
+//            //patientAppointmentsHolder.appointementType.setBackgroundColor((patientAppointmentsHolder.type.getContext().getResources().getColor(R.color.colorPrimaryDark)));
+//            patientAppointmentsHolder.appointementType.setBackground(patientAppointmentsHolder.appointementType.getContext().getResources().getDrawable(R.drawable.button_radius_primary_color));
+//        }
+        if (apointementInformation.getType().equals("Acceptata")) {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#20bf6b"));
-        } else if (apointementInformation.getType().equals("Checked")) {
+        } else if (apointementInformation.getType().equals("In curs")) {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#8854d0"));
         } else {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#eb3b5a"));

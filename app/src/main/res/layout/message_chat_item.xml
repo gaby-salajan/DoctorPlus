@@ -24,6 +24,7 @@
             android:fontFamily="@font/roboto"
             android:background="@drawable/rounded_message"
             android:textSize="18dp"
+            android:textColor="@color/textColor"
             android:shadowRadius="@android:integer/config_shortAnimTime"/>
 
         <TextView
@@ -36,6 +37,7 @@
             android:maxWidth="200dp"
             android:shadowRadius="@android:integer/config_shortAnimTime"
             android:text=""
+            android:textColor="#000000"
             android:textSize="18dp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.cardview.widget.CardView>

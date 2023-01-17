@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_time_slot_description"
-            android:text="Available"
+            android:text="Disponibil"
             android:textSize="14sp"
             android:textStyle="italic"
             android:gravity="center_horizontal"/>

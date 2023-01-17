@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
-    Button searchPatBtn;
+    Button searchDoctorBtn;
     Button myDoctors;
     Button BtnRequst;
     Button profile;
@@ -37,8 +37,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(k);
             }
         });
-        searchPatBtn = (Button)findViewById(R.id.searchBtn);
-        searchPatBtn.setOnClickListener(new View.OnClickListener() {
+        searchDoctorBtn = (Button)findViewById(R.id.searchBtn);
+        searchDoctorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(HomeActivity.this, SearchPatActivity.class);
@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         BtnRequst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DossierMedical.class);
+                Intent intent = new Intent(getApplicationContext(), MedicalFolder.class);
                 intent.putExtra("patient_email",FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
                 startActivity(intent);
             }

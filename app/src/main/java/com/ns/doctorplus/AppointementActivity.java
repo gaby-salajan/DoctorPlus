@@ -56,7 +56,7 @@ public class AppointementActivity extends AppCompatActivity {
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Hour h =new Hour(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+                                Hour h = new Hour(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
                                 addRequest.document(j+"").set(h);
                             }
                         });

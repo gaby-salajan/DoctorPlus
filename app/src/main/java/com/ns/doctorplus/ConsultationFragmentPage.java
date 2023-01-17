@@ -47,7 +47,7 @@ public class ConsultationFragmentPage extends Fragment {
 
         String email_id = getActivity().getIntent().getExtras().getString("patient_email");
         FileRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
-        Query query = FileRef.whereEqualTo("type", "Consultation");
+        Query query = FileRef.whereEqualTo("type", "Consultatie");
 
         FirestoreRecyclerOptions<File> options = new FirestoreRecyclerOptions.Builder<File>()
                 .setQuery(query, File.class)

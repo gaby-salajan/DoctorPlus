@@ -111,7 +111,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                     intent.putExtra(Common.KEY_STEP,2);
                     Log.e("pos ", "onItemSelectedListener: "+position );
                     localBroadcastManager.sendBroadcast(intent);
-                    if(Common.CurrentUserType == "doctor" && holder.txt_time_slot_description.getText().equals("Available")){
+                    if(Common.CurrentUserType == "doctor" && holder.txt_time_slot_description.getText().equals("Disponibil")){
                         AlertDialog.Builder alert = new AlertDialog.Builder(holder.card_time_slot.getContext());
                         alert.setTitle("Setare ca indisponibil");
                         alert.setMessage("Doriti sa setati intervalul ales ca indisponibil?");
@@ -121,9 +121,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
                                 ApointementInformation apointementInformation = new ApointementInformation();
                                 apointementInformation.setApointementType(Common.Currentaappointementatype);
-                                apointementInformation.setDoctorId(Common.CurreentDoctor);
+                                apointementInformation.setDoctorId(Common.CurrentDoctor);
                                 apointementInformation.setDoctorName(Common.CurrentDoctorName);
-                                apointementInformation.setInfo("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+                                apointementInformation.setInfo("Doctor/"+Common.CurrentDoctor +"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
                                 apointementInformation.setType("full");
                                 apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                                         .append(" - ")
@@ -132,7 +132,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
                                 DocumentReference bookingDate = FirebaseFirestore.getInstance()
                                         .collection("Doctor")
-                                        .document(Common.CurreentDoctor)
+                                        .document(Common.CurrentDoctor)
                                         .collection(Common.simpleFormat.format(Common.currentDate.getTime()))
                                         .document(String.valueOf(Common.currentTimeSlot));
 

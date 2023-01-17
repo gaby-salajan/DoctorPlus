@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.ns.doctorplus.Common.Common;
 import com.ns.doctorplus.model.Doctor;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,10 +57,10 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DoctoreHolder2 doctoreHolder, int i) {
+    public void onBindViewHolder(@NonNull DoctoreHolder2 doctorHolder, int i) {
         final Doctor doctor = mTubeListFiltered.get(i);
-        final TextView t = doctoreHolder.title ;
-        doctoreHolder.title.setText(doctor.getName());
+        final TextView t = doctorHolder.title ;
+        doctorHolder.title.setText(doctor.getName());
         /// ajouter l'image
 
         String imageId = doctor.getEmail()+".jpg";
@@ -67,12 +68,12 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(doctoreHolder.image.getContext())
+                Picasso.with(doctorHolder.image.getContext())
                         .load(uri)
                         .placeholder(R.mipmap.ic_launcher)
                         .fit()
                         .centerCrop()
-                        .into(doctoreHolder.image);//Image location
+                        .into(doctorHolder.image);//Image location
 
                 // profileImage.setImageURI(uri);
             }
@@ -82,11 +83,11 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                 // Handle any errors
             }
         });
-        doctoreHolder.specialite.setText("Specialitate : "+doctor.getSpeciality());
+        doctorHolder.specialite.setText("Specialitate : "+doctor.getSpeciality());
         final String idPat = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         final String idDoc = doctor.getEmail();
-        // doctoreHolder.image.setImageURI(Uri.parse("drawable-v24/ic_launcher_foreground.xml"));
-        doctoreHolder.addDoc.setOnClickListener(new View.OnClickListener() {
+        // doctorHolder.image.setImageURI(Uri.parse("drawable-v24/ic_launcher_foreground.xml"));
+        doctorHolder.addDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Map<String, Object> note = new HashMap<>();
@@ -99,18 +100,23 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                                 Snackbar.make(t, "Cerere trimisa", Snackbar.LENGTH_SHORT).show();
                             }
                         });
-                doctoreHolder.addDoc.setVisibility(View.INVISIBLE);
+                doctorHolder.addDoc.setVisibility(View.INVISIBLE);
             }
         });
-        doctoreHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
+        doctorHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doc = doctor.getEmail();
-                Common.CurreentDoctor = doctor.getEmail();
+                Common.CurrentDoctor = doctor.getEmail();
                 Common.CurrentDoctorName = doctor.getName();
                 Common.CurrentPhone = doctor.getTel();
-                openPage(v.getContext());
-
+                FirebaseFirestore.getInstance().collection("User").document(idPat).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Common.CurrentUserPhone = documentSnapshot.getString("tel");
+                        openPage(v.getContext());
+                    }
+                });
             }
         });
 

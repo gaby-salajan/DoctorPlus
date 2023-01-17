@@ -2,7 +2,16 @@ package com.ns.doctorplus.model;
 
 public class ApointementInformation {
     private  String patientName,time,doctorId,doctorName,patientId,type,apointementType,info;
+    String tel;
     private long slot;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public String getApointementType() {
         return apointementType;
@@ -39,12 +48,13 @@ public class ApointementInformation {
     public ApointementInformation(){
     }
 
-    public ApointementInformation(String patientName, String time, String doctorId, String doctorName, long slot) {
+    public ApointementInformation(String patientName, String time, String doctorId, String doctorName, long slot, String tel) {
         this.patientName = patientName;
         this.time = time;
         this.doctorId = doctorId;
         this.doctorName = doctorName;
         this.slot = slot;
+        this.tel = tel;
     }
 
     public String getPatientName() {

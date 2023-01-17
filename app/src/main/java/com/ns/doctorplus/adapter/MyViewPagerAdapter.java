@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.ns.doctorplus.fragment.BookingStep1Fragment;
 import com.ns.doctorplus.fragment.BookingStep2Fragment;
 import com.ns.doctorplus.fragment.BookingStep3Fragment;
 
@@ -22,10 +21,8 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                return BookingStep1Fragment.getInstance();
-            case 1:
                 return BookingStep2Fragment.getInstance();
-            case 2:
+            case 1:
                 return BookingStep3Fragment.getInstance();
         }
         return null;
@@ -33,6 +30,6 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 }

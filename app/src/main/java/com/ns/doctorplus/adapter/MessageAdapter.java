@@ -16,28 +16,30 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MessageAdapter extends FirestoreRecyclerAdapter<Message,MessageAdapter.MessageHolder> {
-
+    int prevPos = 0;
     public MessageAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull MessageHolder holder, int position, @NonNull Message model) {
-        if(model.getUserSender().equals(getCurrentUser().getEmail()+"") ){
-            //holder.text.setTextSize(20);
-            //holder.text.setBackgroundColor(0xC0C0C0);
-           // CoordinatorLayout.LayoutParams  lllp= (CoordinatorLayout.LayoutParams) holder.text.getLayoutParams();
-           // lllp.gravity= Gravity.LEFT;
-            //holder.text.setLayoutParams(lllp);
-            //holder.text.setBackground(holder.text.getContext().getResources().getDrawable(R.drawable.rounded_message2));
-            holder.text2.setText(model.getMessage());
-            holder.text2.setPadding(35,35,35,35);
+        if(position != prevPos){
+            if(model.getUserSender().equals(getCurrentUser().getEmail()) ){
+                //holder.text.setTextSize(20);
+                //holder.text.setBackgroundColor(0xC0C0C0);
+                // CoordinatorLayout.LayoutParams  lllp= (CoordinatorLayout.LayoutParams) holder.text.getLayoutParams();
+                // lllp.gravity= Gravity.LEFT;
+                //holder.text.setLayoutParams(lllp);
+                //holder.text.setBackground(holder.text.getContext().getResources().getDrawable(R.drawable.rounded_message2));
+                holder.text.setText(model.getMessage());
+                holder.text.setPadding(35,35,35,35);
+            }
+            else {
+                holder.text2.setText(model.getMessage());
+                holder.text2.setPadding(35,35,35,35);
+            }
+            prevPos = position;
         }
-        else {
-            holder.text.setText(model.getMessage());
-            holder.text.setPadding(35,35,35,35);
-        }
-
     }
 
     @Override
@@ -55,6 +57,7 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message,MessageAdap
             super(itemView);
             text = itemView.findViewById(R.id.message_item_text);
             text2 = itemView.findViewById(R.id.message_item_text2);
+            prevPos = this.getBindingAdapterPosition();
         }
     }
 

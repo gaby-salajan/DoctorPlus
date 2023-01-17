@@ -46,10 +46,11 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
         myDoctorAppointementHolder.dateAppointement.setText(apointementInformation.getTime());
         myDoctorAppointementHolder.patientName.setText(apointementInformation.getPatientName());
         myDoctorAppointementHolder.appointementType.setText(apointementInformation.getApointementType());
+        myDoctorAppointementHolder.patientPhone.setText(apointementInformation.getTel());
         myDoctorAppointementHolder.approveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apointementInformation.setType("Accepted");
+                apointementInformation.setType("Acceptata");
                 FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
                 FirebaseFirestore.getInstance().document(apointementInformation.getInfo()).update("type","Accepted");
@@ -82,7 +83,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
         myDoctorAppointementHolder.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                apointementInformation.setType("Refused");
+                apointementInformation.setType("Refuzata");
                 FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
                 FirebaseFirestore.getInstance().document(apointementInformation.getInfo()).delete();
@@ -131,6 +132,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
         //Here we hold the MyDoctorAppointementItems
         TextView dateAppointement;
         TextView patientName;
+        TextView patientPhone;
         Button approveBtn;
         Button cancelBtn;
         TextView appointementType;
@@ -143,6 +145,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
             cancelBtn = itemView.findViewById(R.id.btn_decline);
             appointementType = itemView.findViewById(R.id.appointement_type);
             patient_image = itemView.findViewById(R.id.patient_image);
+            patientPhone = itemView.findViewById(R.id.patient_phone);
         }
     }
 

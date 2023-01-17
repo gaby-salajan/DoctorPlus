@@ -64,7 +64,7 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
             @Override
             public void onClick(View v) {
                 doc= doctor.getEmail();
-                Common.CurreentDoctor = doctor.getEmail();
+                Common.CurrentDoctor = doctor.getEmail();
                 openPage(v.getContext());
 
             }

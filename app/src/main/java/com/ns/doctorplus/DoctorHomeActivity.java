@@ -43,7 +43,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
 
     @OnClick(R.id.myCalendarBtn)
     void myCalendarOnclick() {
-        Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
         Intent k = new Intent(DoctorHomeActivity.this, MyCalendarDoctorActivity.class);
         startActivity(k);
     }
@@ -53,7 +53,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home);
         unbinder = ButterKnife.bind(this,this);
-        Common.CurreentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        Common.CurrentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         Common.CurrentUserType = "doctor";
         listPatients = findViewById(R.id.listPatients);
         BtnRequst=findViewById(R.id.btnRequst);
@@ -94,7 +94,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         });
 
         welcomeText = findViewById(R.id.welcomeTextDoctor);
-        FirebaseFirestore.getInstance().collection("User").document(Common.CurreentDoctor).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().collection("User").document(Common.CurrentDoctor).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Common.CurrentUserName = documentSnapshot.getString("name");

@@ -70,7 +70,7 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), "SELECTAT", Toast.LENGTH_SHORT).show();
                 //doc= doctor.getEmail();
-                //Common.CurreentDoctor = doctor.getEmail();
+                //Common.CurrentDoctor = doctor.getEmail();
                 //Common.CurrentDoctorName = doctor.getName();
                 //Common.CurrentPhone = doctor.getTel();
                 //openPage(v.getContext());

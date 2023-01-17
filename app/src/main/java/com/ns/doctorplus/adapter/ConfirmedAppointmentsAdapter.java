@@ -31,6 +31,7 @@ public class ConfirmedAppointmentsAdapter extends FirestoreRecyclerAdapter<Apoin
         confirmedAppointmentsHolder.dateAppointement.setText(apointementInformation.getTime());
         confirmedAppointmentsHolder.patientName.setText(apointementInformation.getPatientName());
         confirmedAppointmentsHolder.appointementType.setText(apointementInformation.getApointementType());
+        confirmedAppointmentsHolder.patientPhone.setText(apointementInformation.getTel());
 
         String imageId = apointementInformation.getPatientId()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
@@ -67,12 +68,16 @@ public class ConfirmedAppointmentsAdapter extends FirestoreRecyclerAdapter<Apoin
         TextView patientName;
         TextView appointementType;
         ImageView patientImage;
+
+        TextView patientPhone;
+
         public ConfirmedAppointmentsHolder(@NonNull View itemView) {
             super(itemView);
             dateAppointement = itemView.findViewById(R.id.appointement_date);
             patientName = itemView.findViewById(R.id.patient_name);
             appointementType = itemView.findViewById(R.id.appointement_type);
             patientImage = itemView.findViewById(R.id.patient_image);
+            patientPhone = itemView.findViewById(R.id.patient_phone);
         }
     }
 }

@@ -54,20 +54,21 @@ public class BookingStep3Fragment extends Fragment {
     void confirmeApointement(){
         ApointementInformation apointementInformation = new ApointementInformation();
         apointementInformation.setApointementType(Common.Currentaappointementatype);
-        apointementInformation.setDoctorId(Common.CurreentDoctor);
+        apointementInformation.setDoctorId(Common.CurrentDoctor);
         apointementInformation.setDoctorName(Common.CurrentDoctorName);
         apointementInformation.setPatientName(Common.CurrentUserName);
         apointementInformation.setPatientId(Common.CurrentUserid);
-        apointementInformation.setInfo("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
-        apointementInformation.setType("Checked");
+        apointementInformation.setTel(Common.CurrentUserPhone);
+        apointementInformation.setInfo("Doctor/"+Common.CurrentDoctor +"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+        apointementInformation.setType("In curs");
         apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
-                .append("at")
+                .append(" - ")
                 .append(simpleDateFormat.format(Common.currentDate.getTime())).toString());
         apointementInformation.setSlot(Long.valueOf(Common.currentTimeSlot));
 
         DocumentReference bookingDate = FirebaseFirestore.getInstance()
                 .collection("Doctor")
-                .document(Common.CurreentDoctor)
+                .document(Common.CurrentDoctor)
                 .collection(Common.simpleFormat.format(Common.currentDate.getTime()))
                 .document(String.valueOf(Common.currentTimeSlot));
 
@@ -89,7 +90,7 @@ public class BookingStep3Fragment extends Fragment {
         }).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                FirebaseFirestore.getInstance().collection("Doctor").document(Common.CurreentDoctor)
+                FirebaseFirestore.getInstance().collection("Doctor").document(Common.CurrentDoctor)
                         .collection("apointementrequest").document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
                 FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
@@ -104,7 +105,7 @@ public class BookingStep3Fragment extends Fragment {
     BroadcastReceiver confirmBookingReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.e("TAG", "onReceive: heave been receiver" );
+            Log.e("TAG", "onReceive: have been received" );
             setData();
         }
     };
@@ -113,7 +114,7 @@ public class BookingStep3Fragment extends Fragment {
     private void setData() {
         txt_booking_berber_text.setText(Common.CurrentDoctorName);
         txt_booking_time_text.setText(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
-        .append("at")
+        .append(" - ")
         .append(simpleDateFormat.format(Common.currentDate.getTime())));
         txt_booking_phone.setText(Common.CurrentPhone);
         txt_booking_type.setText(Common.Currentaappointementatype);

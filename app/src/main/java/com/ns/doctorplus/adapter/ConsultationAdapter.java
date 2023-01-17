@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ns.doctorplus.PrescriptionInfo;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.File;
@@ -20,20 +22,31 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File,ConsultationAdapter.FicheHolder>{
+public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, ConsultationAdapter.FileHolder>{
 
     public ConsultationAdapter(@NonNull FirestoreRecyclerOptions<File> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull FicheHolder holder, int position, @NonNull final File model) {
-        FirebaseFirestore.getInstance().document("Doctor/" + model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+    protected void onBindViewHolder(@NonNull FileHolder holder, int position, @NonNull final File model) {
+        FirebaseFirestore.getInstance().collection("Doctor").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    if(queryDocumentSnapshot.get("name").equals(model.getDoctor())){
+                        holder.doctor_name.setText(queryDocumentSnapshot.get("name").toString());
+                    }
+                }
+
+            }
+        });
+        /*FirebaseFirestore.getInstance().document("Doctor/" + model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 holder.doctor_name.setText(documentSnapshot.getString("name"));
             }
-        });
+        });*/
         holder.type.setText(model.getType());
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,12 +76,12 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File,Consulta
 
     @NonNull
     @Override
-    public FicheHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FileHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.consultation_item,
                 parent, false);
-        return new FicheHolder(v);
+        return new FileHolder(v);
     }
-    class FicheHolder extends RecyclerView.ViewHolder {
+    class FileHolder extends RecyclerView.ViewHolder {
         TextView doctor_name;
         TextView type;
         Button btn;
@@ -77,11 +90,11 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File,Consulta
         TextView appointement_day_name;
         TextView doctor_view_title;
 
-        public FicheHolder(View itemView) {
+        public FileHolder(View itemView) {
             super(itemView);
             doctor_name = itemView.findViewById(R.id.doctor_name);
             type = itemView.findViewById(R.id.text_view_description);
-            btn = itemView.findViewById(R.id.voir_fiche_btn);
+            btn = itemView.findViewById(R.id.view_file_btn);
             appointement_month = itemView.findViewById(R.id.appointement_month);
             appointement_day = itemView.findViewById(R.id.appointement_day);
             appointement_day_name = itemView.findViewById(R.id.appointement_day_name);

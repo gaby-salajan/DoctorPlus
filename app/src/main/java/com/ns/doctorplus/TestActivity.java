@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,7 +24,6 @@ import java.util.List;
 import butterknife.Unbinder;
 
 import static com.ns.doctorplus.Common.Common.step;
-import static com.ns.doctorplus.fragment.BookingStep1Fragment.spinner;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -39,7 +37,7 @@ public class TestActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if(step == 2){
+            if(step == 1){
                 Common.currentTimeSlot = intent.getIntExtra(Common.KEY_TIME_SLOT,-1);
             }
             btn_next_step.setEnabled(true);
@@ -70,7 +68,6 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 setColorButton();
-
             }
 
             @Override
@@ -80,11 +77,10 @@ public class TestActivity extends AppCompatActivity {
                     btn_previous_step.setEnabled(false);
                 else
                     btn_previous_step.setEnabled(true);
-                if(position == 2)
+                if(position == 1)
                     btn_next_step.setEnabled(false);
                 else
                     btn_next_step.setEnabled(true);
-
 
                 setColorButton();
             }
@@ -99,19 +95,18 @@ public class TestActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(step < 3 || step == 0 ){
                     step++ ;
-                    Common.Currentaappointementatype=spinner.getSelectedItem().toString();
-                    Log.e("Spinnr", Common.Currentaappointementatype);
+                    Common.Currentaappointementatype= "Consultatie";
 
-                    if(step==1){
-                        if(Common.CurreentDoctor != null) {
+                    if(step==0){
+                        if(Common.CurrentDoctor != null) {
                             Common.currentTimeSlot = -1;
                             Common.currentDate = Calendar.getInstance();
-                            loadTimeSlotOfDoctor(Common.CurreentDoctor);
+                            loadTimeSlotOfDoctor(Common.CurrentDoctor);
                         }
                     }
-                    else if(step == 2){
+                    else if(step == 1){
                        // if(Common.currentTimeSlot != -1)
-                            confirmeBooking();
+                            confirmBooking();
                     }
                     viewPager.setCurrentItem(step);
                 }
@@ -122,19 +117,19 @@ public class TestActivity extends AppCompatActivity {
         btn_previous_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(step == 3 || step > 0 ){
+                if(step == 2 || step > 0 ){
                     step-- ;
                     viewPager.setCurrentItem(step);
                 }
             }
         });
 
-        loadTimeSlotOfDoctor("testdoc@testdoc.com");
+        loadTimeSlotOfDoctor(Common.CurrentDoctor);
     }
 
 
 
-    private void confirmeBooking() {
+    private void confirmBooking() {
 
         Intent intent = new Intent(Common.KEY_CONFIRM_BOOKING);
         localBroadcastManager.sendBroadcast(intent);
@@ -169,9 +164,8 @@ public class TestActivity extends AppCompatActivity {
 
     private void setupStepView() {
         List<String> stepList = new ArrayList<>();
-        stepList.add("Purpose");
-        stepList.add("Tme and Date");
-        stepList.add("finish");
+        stepList.add("Ora si data");
+        stepList.add("Finalizare");
         stepView.setSteps(stepList);
 
     }

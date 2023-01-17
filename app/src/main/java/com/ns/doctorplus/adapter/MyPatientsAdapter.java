@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ns.doctorplus.ChatActivity;
-import com.ns.doctorplus.DossierMedical;
+import com.ns.doctorplus.MedicalFolder;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -94,7 +94,7 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
     }
 
     private void openPatientMedicalFolder(Context medicalFolder, Patient patient){
-        Intent intent = new Intent(medicalFolder, DossierMedical.class);
+        Intent intent = new Intent(medicalFolder, MedicalFolder.class);
         intent.putExtra("patient_name", patient.getName());
         intent.putExtra("patient_email",patient.getEmail());
         intent.putExtra("patient_phone", patient.getTel());

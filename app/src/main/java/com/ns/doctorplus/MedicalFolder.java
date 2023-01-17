@@ -30,8 +30,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class DossierMedical extends AppCompatActivity {
-    private final static String TAG = "DossierMedical";
+public class MedicalFolder extends AppCompatActivity {
+    private final static String TAG = "MedicalFolder";
     private FloatingActionButton createNewFicheButton;
     private String patient_email;
     private Button infobtn;
@@ -51,20 +51,20 @@ public class DossierMedical extends AppCompatActivity {
         patient_email = getIntent().getStringExtra("patient_email");
         this.configureViewPager();
 
-        Log.d(TAG, "onCreate dossier medical activity: started");
+        Log.d(TAG, "onCreate medical folder activity: started");
         getIncomingIntent();
 
         createNewFicheButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         createNewFicheButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPatientFiche();
+                openPatientFile();
             }
         });
         if(Common.CurrentUserType.equals("patient")){
             createNewFicheButton.setVisibility(View.GONE);
         }
-        infobtn= findViewById(R.id.infobtn);
+        infobtn = findViewById(R.id.infobtn);
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +146,7 @@ public class DossierMedical extends AppCompatActivity {
 
     private void configureViewPager() {
         // 1 - Get ViewPager from layout
-        ViewPager pager = (ViewPager) findViewById(R.id.ViewPagerDossier);
+        ViewPager pager = (ViewPager) findViewById(R.id.ViewPagerFolder);
         // 2 - Set Adapter PageAdapter and glue it together
         pager.setAdapter(new ConsultationFragmentAdapter(getSupportFragmentManager()));
         // 1 - Get TabLayout from layout
@@ -162,7 +162,7 @@ public class DossierMedical extends AppCompatActivity {
 
     }
 
-    private void openPatientFiche(){
+    private void openPatientFile(){
         Intent intent = new Intent(this, FileActivity.class);
         String patient_name = getIntent().getStringExtra("patient_name");
         String patient_email = getIntent().getStringExtra("patient_email");
