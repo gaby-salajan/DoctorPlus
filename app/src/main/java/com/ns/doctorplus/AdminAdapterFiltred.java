@@ -1,38 +1,24 @@
 package com.ns.doctorplus;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.ns.doctorplus.Common.Common;
-import com.ns.doctorplus.model.Doctor;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.ns.doctorplus.model.User;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltred.AdminHolder2> implements Filterable {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,12 +54,9 @@ public class AdminAdapterFiltred  extends RecyclerView.Adapter<AdminAdapterFiltr
         adminHolder.selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "SELECTAT", Toast.LENGTH_SHORT).show();
-                //doc= doctor.getEmail();
-                //Common.CurrentDoctor = doctor.getEmail();
-                //Common.CurrentDoctorName = doctor.getName();
-                //Common.CurrentPhone = doctor.getTel();
-                //openPage(v.getContext());
+                Intent intent = new Intent(v.getContext(), AdminSelectedUser.class);
+                intent.putExtra("email", user.getEmail());
+                v.getContext().startActivity(intent);
             }
         });
 

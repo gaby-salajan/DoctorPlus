@@ -2,6 +2,7 @@ package com.ns.doctorplus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,14 +40,20 @@ public class AdminHomeActivity extends AppCompatActivity {
     EditText emailText;
     Unbinder unbinder;
     AdminAdapterFiltred adapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstaceState) {
 
         super.onCreate(savedInstaceState);
         setContentView(R.layout.activity_admin_home);
+        emailText = findViewById(R.id.editText2);
         btnSearch = findViewById(R.id.searchBtn);
-        btnListAll = findViewById(R.id.listAllBtn);
+        recyclerView = findViewById(R.id.searchUserRecycle);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         btnDeconnect = findViewById(R.id.signOutBtn);
         btnDeconnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,14 +66,38 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
         setUpRecyclerView();
 
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(emailText.getText().toString().equals("")){
+                    Query query = userRef.orderBy("name", Query.Direction.ASCENDING);
+
+                    query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            adapter = new AdminAdapterFiltred(task.getResult().toObjects(User.class));
+                            recyclerView.setAdapter(adapter);
+                        }
+                    });
+                }else{
+                    Query query = userRef.whereEqualTo("email", emailText.getText().toString());
+                    query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            adapter = new AdminAdapterFiltred(task.getResult().toObjects(User.class));
+                            Log.i("admin", String.valueOf(adapter.getItemCount()));
+                            recyclerView.setAdapter(adapter);
+                        }
+                    });
+                }
+
+            }
+        });
+
     }
 
     private void setUpRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.searchUserRecycle);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Query query = userRef.orderBy("name", Query.Direction.ASCENDING);
-
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -75,12 +106,6 @@ public class AdminHomeActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
         });
-        //FirestoreRecyclerOptions<Doctor> options = new FirestoreRecyclerOptions.Builder<Doctor>()
-        //  .setQuery(query, Doctor.class)
-        //  .build();
-
-        //adapter = new DoctoreAdapter(options);
-
-
     }
+
 }
