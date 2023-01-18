@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,11 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 public class MedicalFolder extends AppCompatActivity {
     private final static String TAG = "MedicalFolder";
-    private FloatingActionButton createNewFicheButton;
+    private FloatingActionButton createNewFileButton;
     private String patient_email;
     private Button infobtn;
     private String patient_name;
@@ -56,15 +54,15 @@ public class MedicalFolder extends AppCompatActivity {
         Log.d(TAG, "onCreate medical folder activity: started");
         getIncomingIntent();
 
-        createNewFicheButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        createNewFicheButton.setOnClickListener(new View.OnClickListener() {
+        createNewFileButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        createNewFileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPatientFile();
             }
         });
         if(Common.CurrentUserType.equals("patient")){
-            createNewFicheButton.setVisibility(View.GONE);
+            createNewFileButton.setVisibility(View.GONE);
         }
         infobtn = findViewById(R.id.infobtn);
         infobtn.setOnClickListener(new View.OnClickListener() {

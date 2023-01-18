@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.ns.doctorplus.model.File;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -29,16 +31,26 @@ public class FileActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
-        disease = findViewById(R.id.file_disease);
-        descriptionField = findViewById(R.id.file_description);
-        treatmentField = findViewById(R.id.file_treatment);
-
         FirebaseFirestore.getInstance().collection("Doctor").document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 doctor_name = documentSnapshot.getString("name");
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                FirebaseFirestore.getInstance().collection("Asistent").document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        doctor_name = documentSnapshot.getString("name");
+                    }
+                });
+            }
         });
+
+        disease = findViewById(R.id.file_disease);
+        descriptionField = findViewById(R.id.file_description);
+        treatmentField = findViewById(R.id.file_treatment);
 
         //Add fiche
         Button addFicheButton = findViewById(R.id.button_add_file);
@@ -70,9 +82,9 @@ public class FileActivity extends AppCompatActivity implements AdapterView.OnIte
         String patient_email = getIntent().getStringExtra("patient_email");
 
 
-        CollectionReference ficheRef = FirebaseFirestore.getInstance().collection("Patient").document(""+patient_email+"")
+        CollectionReference fileRef = FirebaseFirestore.getInstance().collection("Patient").document(""+patient_email+"")
                 .collection("MyMedicalFolder");
-        ficheRef.document().set(new File(diseaseFile, descriptionFile, treatmentFile, fileType, doctor_name));
+        fileRef.document().set(new File(diseaseFile, descriptionFile, treatmentFile, fileType, doctor_name));
         //ficheRef.add(new Fiche(diseaseFile, descriptionFile, treatmentFile, fileType, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
 
         Toast.makeText(this, "Fisa adaugata pentru " + patient_name, Toast.LENGTH_LONG).show();

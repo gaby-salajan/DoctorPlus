@@ -14,8 +14,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.ns.doctorplus.model.UploadImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,7 +26,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,15 +33,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
+import com.ns.doctorplus.model.UploadImage;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class EditProfileDoctorActivity extends AppCompatActivity {
+public class AsistentEditProfileActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
-    private static final String TAG = "EditProfileDoctorActivity";
+    private static final String TAG = "AsistentEditProfileActivity";
     private ImageView profileImage;
     private ImageButton selectImage;
     private Button updateProfile;
@@ -97,7 +95,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Glide.with(EditProfileDoctorActivity.this)
+                Glide.with(AsistentEditProfileActivity.this)
                         .load(uri)
                         .centerCrop()
                         .into(profileImage);
@@ -106,8 +104,8 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Glide.with(EditProfileDoctorActivity.this)
-                        .load(getResources().getDrawable(R.drawable.doctor))
+                Glide.with(AsistentEditProfileActivity.this)
+                        .load(getResources().getDrawable(R.drawable.nurse))
                         .centerCrop()
                         .into(profileImage);
                 //profileImage.setImageDrawable(getResources().getDrawable(R.drawable.doctor));
@@ -137,7 +135,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
 
     /* Update the doctor info in the database */
     private void updateDoctorInfos(String name, String address, String phone) {
-        DocumentReference documentReference = doctorRef.collection("Doctor").document("" + doctorID + "");
+        DocumentReference documentReference = doctorRef.collection("Asistent").document("" + doctorID + "");
         documentReference.update("address", address);
         //documentReference.update("email", email);
         documentReference.update("name", name);
@@ -145,13 +143,13 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EditProfileDoctorActivity.this, "Informatii actualizate", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AsistentEditProfileActivity.this, "Informatii actualizate", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EditProfileDoctorActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(AsistentEditProfileActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         Log.d("Androidview", e.getMessage());
                     }
                 });
@@ -236,7 +234,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                                 });
                     }*/
                     else {
-                        Toast.makeText(EditProfileDoctorActivity.this, "Incarcare esuata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AsistentEditProfileActivity.this, "Incarcare esuata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

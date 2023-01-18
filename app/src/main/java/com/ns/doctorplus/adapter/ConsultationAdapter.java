@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ns.doctorplus.PrescriptionInfo;
@@ -19,7 +20,6 @@ import com.ns.doctorplus.model.File;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, ConsultationAdapter.FileHolder>{
@@ -30,15 +30,33 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, Consult
 
     @Override
     protected void onBindViewHolder(@NonNull FileHolder holder, int position, @NonNull final File model) {
+
         FirebaseFirestore.getInstance().collection("Doctor").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                     if(queryDocumentSnapshot.get("name").equals(model.getDoctor())){
+                        holder.typeText.setText("Doctor");
                         holder.doctor_name.setText(queryDocumentSnapshot.get("name").toString());
                     }
                 }
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                FirebaseFirestore.getInstance().collection("Asistent").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                            if(queryDocumentSnapshot.get("name").equals(model.getDoctor())){
+                                holder.typeText.setText("Asistent");
+                                holder.doctor_name.setText(queryDocumentSnapshot.get("name").toString());
+                            }
+                        }
+
+                    }
+                });
             }
         });
         /*FirebaseFirestore.getInstance().document("Doctor/" + model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -62,7 +80,7 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, Consult
             holder.appointement_day_name.setText(date[0]);
             holder.appointement_day.setText(date[2]);
             holder.appointement_month.setText(date[1]);
-            holder.doctor_view_title.setText(date[3]);
+            holder.app_time.setText(date[3]);
         }
     }
 
@@ -85,12 +103,13 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, Consult
     }
     class FileHolder extends RecyclerView.ViewHolder {
         TextView doctor_name;
+        TextView typeText;
         TextView type;
         Button btn;
         TextView appointement_month;
         TextView appointement_day;
         TextView appointement_day_name;
-        TextView doctor_view_title;
+        TextView app_time;
 
         public FileHolder(View itemView) {
             super(itemView);
@@ -100,7 +119,8 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, Consult
             appointement_month = itemView.findViewById(R.id.appointement_month);
             appointement_day = itemView.findViewById(R.id.appointement_day);
             appointement_day_name = itemView.findViewById(R.id.appointement_day_name);
-            doctor_view_title = itemView.findViewById(R.id.doctor_view_title);
+            app_time = itemView.findViewById(R.id.doctor_view_title);
+            typeText = itemView.findViewById(R.id.typeText);
         }
     }
 }

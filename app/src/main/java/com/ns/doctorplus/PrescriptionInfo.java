@@ -1,9 +1,16 @@
 package com.ns.doctorplus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +47,32 @@ public class PrescriptionInfo extends AppCompatActivity {
         diseaseView.setText(getIntent().getStringExtra("disease"));
         treatmentView.setText(getIntent().getStringExtra("treatment"));
         descriptionView.setText(getIntent().getStringExtra("description"));
-        doctorView.setText("Doctor,\n" + getIntent().getStringExtra("doctor"));
+        FirebaseFirestore.getInstance().collection("Doctor").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    if(queryDocumentSnapshot.get("name").equals(getIntent().getStringExtra("doctor"))){
+                        doctorView.setText("Doctor,\n" + getIntent().getStringExtra("doctor"));
+                    }
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                FirebaseFirestore.getInstance().collection("Asistent").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                            if(queryDocumentSnapshot.get("name").equals(getIntent().getStringExtra("doctor"))){
+                                doctorView.setText("Asistent,\n" + getIntent().getStringExtra("doctor"));
+                            }
+                        }
+
+                    }
+                });
+            }
+        });
     }
 
     private String monthToNumber (String month) {

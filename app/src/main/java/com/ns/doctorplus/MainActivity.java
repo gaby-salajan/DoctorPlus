@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
                                         Intent k = new Intent(MainActivity.this, AdminHomeActivity.class);
                                         startActivity(k);
                                     }else if(user.getType().equals("Asistent")){
-                                        Intent k = new Intent(MainActivity.this, DoctorHomeActivity.class);
+                                        Intent k = new Intent(MainActivity.this, AssistentHomeActivity.class);
                                         startActivity(k);
                                     }else {
                                         Intent k = new Intent(MainActivity.this, DoctorHomeActivity.class);

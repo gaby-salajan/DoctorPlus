@@ -21,6 +21,10 @@
         <activity android:name="com.ns.doctorplus.ChatActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.PatientRequestPage" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.DoctorHomeActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.AssistentHomeActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.AsistentMyPatientsActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.ProfileAsistentActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.AsistentEditProfileActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.AdminHomeActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.EditProfileDoctorActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.ConfirmedAppointmensActivity" android:exported="true"/>
