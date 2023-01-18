@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.ns.doctorplus.model.UploadImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,10 +43,10 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private ImageView profileImage;
     private ImageButton selectImage;
     private Button updateProfile;
-    private TextInputEditText doctorName;
+    private EditText doctorName;
     private TextInputEditText doctorEmail;
-    private TextInputEditText doctorPhone;
-    private TextInputEditText doctorAddress;
+    private EditText doctorPhone;
+    private EditText doctorAddress;
     final String currentDoctorUID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     private Uri uriImage;
@@ -71,8 +73,8 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         //doctorEmail = findViewById(R.id.emailText);
         doctorAddress = findViewById(R.id.addressText);
 
-        pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
-        pDatabaseRef = FirebaseDatabase.getInstance().getReference("DoctorProfile");
+        pStorageRef = FirebaseStorage.getInstance().getReference("UserProfile");
+        pDatabaseRef = FirebaseDatabase.getInstance().getReference("UserProfile");
 
         //get the default doctor's informations from ProfileDoctorActivity
         Intent intent = getIntent(); //get the current intent
@@ -91,24 +93,20 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                 .into(profileImage);
                    */
         String userPhotoPath = currentDoctorUID + ".jpg";
-        pathReference = storageRef.child("DoctorProfile/" + userPhotoPath); //Doctor photo in database
+        pathReference = storageRef.child("UserProfile/" + userPhotoPath); //Doctor photo in database
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(EditProfileDoctorActivity.this)
+                Glide.with(EditProfileDoctorActivity.this)
                         .load(uri)
-                        .placeholder(R.drawable.doctor)
-                        .fit()
                         .centerCrop()
-                        .into(profileImage);//Store here the imageView
-
-                // profileImage.setImageURI(uri);
+                        .into(profileImage);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Toast.makeText(EditProfileDoctorActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                profileImage.setImageDrawable(getResources().getDrawable(R.drawable.doctor));
             }
         });
 
@@ -117,7 +115,6 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openFileChooser();
-
             }
         });
 
@@ -137,7 +134,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     /* Update the doctor info in the database */
     private void updateDoctorInfos(String name, String address, String phone) {
         DocumentReference documentReference = doctorRef.collection("Doctor").document("" + doctorID + "");
-        documentReference.update("adresse", address);
+        documentReference.update("address", address);
         //documentReference.update("email", email);
         documentReference.update("name", name);
         documentReference.update("tel", phone)
@@ -172,7 +169,10 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             uriImage = data.getData();
-            Picasso.with(this).load(uriImage).into(profileImage);
+            Glide.with(this)
+                    .load(uriImage)
+                    .centerCrop()
+                    .into(profileImage);
         }
     }
 
@@ -205,8 +205,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         Log.e(TAG, "then: " + downloadUri.toString());
 
-                        UploadImage upload = new UploadImage(currentDoctorUID,
-                                downloadUri.toString());
+                        UploadImage upload = new UploadImage(currentDoctorUID, downloadUri.toString());
                         pDatabaseRef.push().setValue(upload);
                     }
 

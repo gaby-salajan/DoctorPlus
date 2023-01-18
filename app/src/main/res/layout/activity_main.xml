@@ -94,7 +94,7 @@
         android:layout_height="46dp"
         android:layout_marginBottom="180dp"
         android:background="#5E35B1"
-        android:text="SIGN UP"
+        android:text="Inregistrare"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:visibility="gone"

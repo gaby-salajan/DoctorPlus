@@ -17,7 +17,7 @@
             android:id="@+id/imageView2"
             android:layout_width="70dp"
             android:layout_height="77dp"
-            app:srcCompat="@drawable/doctor" />
+            app:srcCompat="@drawable/ic_anon_user_48dp" />
         <TextView
             android:id="@+id/patient_address"
             android:layout_width="wrap_content"

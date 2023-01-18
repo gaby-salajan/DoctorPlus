@@ -2,6 +2,8 @@ package com.ns.doctorplus.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ns.doctorplus.ChatActivity;
+import com.ns.doctorplus.EditProfileDoctorActivity;
 import com.ns.doctorplus.MedicalFolder;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.Patient;
@@ -66,23 +70,21 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
         });
 
         String imageId = patient.getEmail()+".jpg"; //add a title image
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(myPatientsHolder.imageViewPatient.getContext())
+                Glide.with(myPatientsHolder.imageViewPatient.getContext())
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(myPatientsHolder.imageViewPatient);//Image location
+                        .into(myPatientsHolder.imageViewPatient);
 
                 // profileImage.setImageURI(uri);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
+                myPatientsHolder.imageViewPatient.setImageDrawable(myPatientsHolder.resources.getDrawable(R.drawable.ic_person));
             }
         });
 
@@ -122,6 +124,8 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
         ImageView imageViewPatient;
         Button contactButton;
         RelativeLayout parentLayout;
+
+        Resources resources;
         public MyPatientsHolder(@NonNull View itemView) {
             super(itemView);
             callBtn = itemView.findViewById(R.id.callBtn);
@@ -130,6 +134,8 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
             imageViewPatient = itemView.findViewById(R.id.patient_item_image);
             contactButton = itemView.findViewById(R.id.contact);
             parentLayout = itemView.findViewById(R.id.parent_layout);
+
+            resources = itemView.getResources();
         }
     }
 

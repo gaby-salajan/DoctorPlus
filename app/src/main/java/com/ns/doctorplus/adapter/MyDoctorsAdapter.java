@@ -2,6 +2,7 @@ package com.ns.doctorplus.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ns.doctorplus.ChatActivity;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.Doctor;
@@ -54,23 +56,21 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         });
 //
         String imageId = doctor.getEmail()+".jpg"; //add a title image
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(myDoctorsHolder.imageViewDoctor.getContext())
+                Glide.with(myDoctorsHolder.imageViewDoctor.getContext())
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(myDoctorsHolder.imageViewDoctor);//Image location
+                        .into(myDoctorsHolder.imageViewDoctor);
 
                 // profileImage.setImageURI(uri);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
+                myDoctorsHolder.imageViewDoctor.setImageDrawable(myDoctorsHolder.resources.getDrawable(R.drawable.doctor));
             }
         });
     }
@@ -103,6 +103,8 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         Button sendMessageButton;
         Button callBtn;
         Button contactButton;
+
+        Resources resources;
         public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.doctor_view_title);
@@ -112,6 +114,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
             sendMessageButton = itemView.findViewById(R.id.view_file_btn);
             callBtn = itemView.findViewById(R.id.callBtn);
             contactButton = itemView.findViewById(R.id.contact);
+            resources = itemView.getResources();
         }
     }
 

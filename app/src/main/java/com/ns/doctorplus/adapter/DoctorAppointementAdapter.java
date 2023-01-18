@@ -1,5 +1,6 @@
 package com.ns.doctorplus.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ns.doctorplus.ChatActivity;
+import com.ns.doctorplus.EditProfileDoctorActivity;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.ApointementInformation;
 import com.ns.doctorplus.model.Doctor;
@@ -42,7 +45,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MyDoctorAppointementHolder myDoctorAppointementHolder, int position, @NonNull final ApointementInformation apointementInformation) {
+    protected void onBindViewHolder(@NonNull MyDoctorAppointementHolder myDoctorAppointementHolder, @SuppressLint("RecyclerView") int position, @NonNull final ApointementInformation apointementInformation) {
         myDoctorAppointementHolder.dateAppointement.setText(apointementInformation.getTime());
         myDoctorAppointementHolder.patientName.setText(apointementInformation.getPatientName());
         myDoctorAppointementHolder.appointementType.setText(apointementInformation.getApointementType());
@@ -92,17 +95,14 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
         });
 
         String imageId = apointementInformation.getPatientId()+".jpg"; //add a title image
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(myDoctorAppointementHolder.patient_image.getContext())
+                Glide.with(myDoctorAppointementHolder.patient_image.getContext())
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(myDoctorAppointementHolder.patient_image);//Image location
-
+                        .into(myDoctorAppointementHolder.patient_image);
                 // profileImage.setImageURI(uri);
             }
         }).addOnFailureListener(new OnFailureListener() {

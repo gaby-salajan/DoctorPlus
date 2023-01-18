@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.ns.doctorplus.EditProfileDoctorActivity;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.ApointementInformation;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -61,14 +63,12 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
 
         //display profile image
         String imageId = apointementInformation.getDoctorId();
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/" + imageId + ".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/" + imageId + ".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(patientAppointmentsHolder.image.getContext())
+                Glide.with(patientAppointmentsHolder.image.getContext())
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
                         .into(patientAppointmentsHolder.image);
                 // profileImage.setImageURI(uri);

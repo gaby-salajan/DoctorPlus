@@ -69,8 +69,10 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<File, Consult
     private void openPage(Context wf, File m){
         Intent i = new Intent(wf, PrescriptionInfo.class);
         i.putExtra("dateCreated", m.getDateCreated().toString());
-        i.putExtra("doctor",m.getDoctor());
-        i.putExtra("description",m.getDescription());
+        i.putExtra("doctor", m.getDoctor());
+        i.putExtra("description", m.getDescription());
+        i.putExtra("disease", m.getDisease());
+        i.putExtra("treatment", m.getTreatment());
         wf.startActivity(i);
     }
 

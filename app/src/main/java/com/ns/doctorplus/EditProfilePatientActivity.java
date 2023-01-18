@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.ns.doctorplus.model.UploadImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -36,15 +39,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EditProfilePatientActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
-    private static final String TAG = "EditProfilePatientA";
+    private static final String TAG = "EditProfileDoctorActivity";
     private ImageView profileImage;
     private ImageButton selectImage;
     private Button updateProfile;
-    private TextInputEditText doctorName;
+    private EditText doctorName;
     private TextInputEditText doctorEmail;
-    private TextInputEditText doctorPhone;
-    private TextInputEditText doctorAddress;
-    final String patientID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+    private EditText doctorPhone;
+    private EditText doctorAddress;
+    final String currentDoctorUID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+    final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     private Uri uriImage;
 
     private StorageReference pStorageRef;
@@ -55,25 +59,21 @@ public class EditProfilePatientActivity extends AppCompatActivity {
     private StorageReference storageRef = storage.getReference();
     private DatabaseReference currentUserImg;
 
-    DocumentReference patientRef = FirebaseFirestore.getInstance().collection("Patient").document("" + patientID + "");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_patient);
-        Log.i(TAG, "pp", null);
-
-        /*doctorRef = FirebaseFirestore.getInstance();
+        setContentView(R.layout.activity_edit_profile_doctor);
+        doctorRef = FirebaseFirestore.getInstance();
         profileImage = findViewById(R.id.image_profile);
         selectImage = findViewById(R.id.select_image);
         updateProfile = findViewById(R.id.update);
         doctorName = findViewById(R.id.nameText);
         doctorPhone = findViewById(R.id.phoneText);
-        ///doctorEmail = findViewById(R.id.emailText);
         doctorAddress = findViewById(R.id.addressText);
 
-        pStorageRef = FirebaseStorage.getInstance().getReference("patientProfile");
-        pDatabaseRef = FirebaseDatabase.getInstance().getReference("patientProfile");
+        pStorageRef = FirebaseStorage.getInstance().getReference("UserProfile");
+        pDatabaseRef = FirebaseDatabase.getInstance().getReference("UserProfile");
 
         //get the default doctor's informations from ProfileDoctorActivity
         Intent intent = getIntent(); //get the current intent
@@ -85,32 +85,27 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         doctorName.setText(current_name);
         doctorPhone.setText(current_phone);
         doctorAddress.setText(current_address);
-        *//*
+        /*
         currentUserImg = FirebaseDatabase.getInstance().getReference("DoctorProfile").child("1590965871687");
         Glide.with(this)
                 .load(currentUserImg)
                 .into(profileImage);
-                   *//*
-
-        String userPhotoPath = patientID + ".jpg";
-        pathReference = storageRef.child("patientProfile/" + userPhotoPath); //Doctor photo in database
+                   */
+        String userPhotoPath = currentDoctorUID + ".jpg";
+        pathReference = storageRef.child("UserProfile/" + userPhotoPath); //Doctor photo in database
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(EditProfilePatientActivity.this)
+                Glide.with(EditProfilePatientActivity.this)
                         .load(uri)
-                        .placeholder(R.drawable.doctor)
-                        .fit()
                         .centerCrop()
-                        .into(profileImage);//Store here the imageView
-
-                // profileImage.setImageURI(uri);
+                        .into(profileImage);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                Toast.makeText(EditProfilePatientActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_person));
             }
         });
 
@@ -119,7 +114,6 @@ public class EditProfilePatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openFileChooser();
-
             }
         });
 
@@ -136,18 +130,16 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         });
     }
 
-
-    *//* Update the doctor info in the database *//*
+    /* Update the doctor info in the database */
     private void updateDoctorInfos(String name, String address, String phone) {
-        DocumentReference documentReference = doctorRef.collection("Patient").document("" + patientID + "");
-        documentReference.update("adresse", address);
-        //documentReference.update("email", email);
+        DocumentReference documentReference = doctorRef.collection("Patient").document("" + doctorID + "");
+        documentReference.update("address", address);
         documentReference.update("name", name);
         documentReference.update("tel", phone)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EditProfilePatientActivity.this, "Infos Updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditProfilePatientActivity.this, "Informatii actualizate", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -159,7 +151,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
                 });
     }
 
-    *//* Used to choose a file *//*
+    /* Used to choose a file */
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -167,7 +159,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    *//* used to get the data back *//*
+    /* used to get the data back */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -175,22 +167,25 @@ public class EditProfilePatientActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             uriImage = data.getData();
-            Picasso.with(this).load(uriImage).into(profileImage);
+            Glide.with(this)
+                    .load(uriImage)
+                    .centerCrop()
+                    .into(profileImage);
         }
     }
 
-    *//* Retrieve the extension of the file to upload *//*
+    /* Retrieve the extension of the file to upload */
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    *//* Used to upload the doctor image in the DataBase *//*
+    /* Used to upload the doctor image in the DataBase */
     private void uploadProfileImage() {
-        *//* check if the image is not null *//*
+        /* check if the image is not null */
         if (uriImage != null) {
-            StorageReference storageReference = pStorageRef.child(patientID
+            StorageReference storageReference = pStorageRef.child(currentDoctorUID
                     + "." + getFileExtension(uriImage));
             storageReference.putFile(uriImage).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -208,11 +203,11 @@ public class EditProfilePatientActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         Log.e(TAG, "then: " + downloadUri.toString());
 
-                        UploadImage upload = new UploadImage(patientID, downloadUri.toString());
+                        UploadImage upload = new UploadImage(currentDoctorUID, downloadUri.toString());
                         pDatabaseRef.push().setValue(upload);
                     }
 
-                    *//*
+                    /*
                     if (uriImage != null) {
                         StorageReference fileReference = pStorageRef.child(System.currentTimeMillis()
                                 + "." + getFileExtension(uriImage));
@@ -233,13 +228,13 @@ public class EditProfilePatientActivity extends AppCompatActivity {
                                                 .show();
                                     }
                                 });
-                    }*//*
+                    }*/
                     else {
-                        Toast.makeText(EditProfilePatientActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfilePatientActivity.this, "Incarcare esuata: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
-                *//*
+                /*
                 private void getDownloadUrl(StorageReference fileReference) {
                     fileReference.getDownloadUrl()
                             .addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -249,10 +244,10 @@ public class EditProfilePatientActivity extends AppCompatActivity {
                                 }
                             });
                 }
-                 *//*
+                 */
 
 
             });
-        }*/
+        }
     }
 }

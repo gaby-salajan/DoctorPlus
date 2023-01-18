@@ -1,6 +1,7 @@
 package com.ns.doctorplus;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textview.MaterialTextView;
@@ -20,7 +22,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,36 +42,34 @@ public class ProfileDoctorActivity extends AppCompatActivity {
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("Doctor").document("" + doctorID + "");
-
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_doctor);
+        context = getApplicationContext();
 
         doctorImage = findViewById(R.id.imageView3);
         doctorName = findViewById(R.id.doctor_name);
-        doctorSpe = findViewById(R.id.doctor_specialite);
+        doctorSpe = findViewById(R.id.doctor_speciality);
         doctorPhone = findViewById(R.id.doctor_phone);
         doctorEmail = findViewById(R.id.doctor_email);
         doctorAddress = findViewById(R.id.doctor_address);
-        doctorAbout = findViewById(R.id.doctor_about);
         AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setCancelable(true).build();
         dialog.show();
 
 
         //display profile image
         String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId+".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(ProfileDoctorActivity.this)
+                Glide.with(context)
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(doctorImage);//hna fin kayn Image view
+                        .into(doctorImage);
                 dialog.dismiss();
                 // profileImage.setImageURI(uri);
             }
@@ -78,6 +77,9 @@ public class ProfileDoctorActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
+                exception.printStackTrace();
+                doctorImage.setImageDrawable(getResources().getDrawable(R.drawable.doctor));
+                dialog.dismiss();
             }
         });
 
@@ -85,10 +87,10 @@ public class ProfileDoctorActivity extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 doctorName.setText(documentSnapshot.getString("name"));
-                doctorSpe.setText(documentSnapshot.getString("specialite"));
+                doctorSpe.setText(documentSnapshot.getString("speciality"));
                 doctorPhone.setText(documentSnapshot.getString("tel"));
                 doctorEmail.setText(documentSnapshot.getString("email"));
-                doctorAddress.setText(documentSnapshot.getString("adresse"));
+                doctorAddress.setText(documentSnapshot.getString("address"));
             }
         });
         // Find the toolbar view inside the activity layout

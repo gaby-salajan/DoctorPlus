@@ -1,5 +1,6 @@
 package com.ns.doctorplus.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.ns.doctorplus.R;
 import com.ns.doctorplus.model.Doctor;
 import com.ns.doctorplus.model.Patient;
@@ -77,6 +81,22 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
             }
         });
 
+        //display profile image
+        FirebaseStorage.getInstance().getReference().child("UserProfile/" + idPat + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(RequestHolder.image.getContext())
+                        .load(uri)
+                        .centerCrop()
+                        .into(RequestHolder.image);
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
     }
 

@@ -1,15 +1,18 @@
 package com.ns.doctorplus;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textview.MaterialTextView;
@@ -43,18 +46,21 @@ public class ProfilePatientActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("Patient").document("" + patientID + "");
 
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_doctor);
+        context = getApplicationContext();
 
         patientName = findViewById(R.id.doctor_name);
-        patientSpe = findViewById(R.id.doctor_specialite);
+        patientSpe = findViewById(R.id.doctor_speciality);
+        patientSpe.setVisibility(View.INVISIBLE);
+
         patientPhone = findViewById(R.id.doctor_phone);
         patientEmail = findViewById(R.id.doctor_email);
         patientAddress = findViewById(R.id.doctor_address);
-        patientAbout = findViewById(R.id.doctor_about);
         patientImage = findViewById(R.id.imageView3);
 
         Drawable defaultImage = getResources().getDrawable(R.drawable.ic_anon_user_48dp); //default user image
@@ -64,38 +70,23 @@ public class ProfilePatientActivity extends AppCompatActivity {
 
         //display profile image
         String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        pathReference = FirebaseStorage.getInstance().getReference().child("patientProfile/"+ imageId+".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId+".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(ProfilePatientActivity.this)
+                Glide.with(context)
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(patientImage);//hna fin kayn Image view
+                        .into(patientImage);
                 dialog.dismiss();
                 // profileImage.setImageURI(uri);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-                //R.drawable.ic_person
-
-                String uri = "@drawable/ic_person";
-
-                int imageResource = 0;
-                try {
-                    imageResource = getResources().getIdentifier(uri, null, getPackageName());
-                    Drawable res = getResources().getDrawable(imageResource);
-                    patientImage.setImageDrawable(res);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if(imageResource != 0){
-                    dialog.dismiss();
-                }
+                exception.printStackTrace();
+                patientImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_person));
+                dialog.dismiss();
             }
         });
 
@@ -103,11 +94,9 @@ public class ProfilePatientActivity extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 patientName.setText(documentSnapshot.getString("name"));
-               // patientSpe.setText(documentSnapshot.getString("dateNaissance"));
                 patientPhone.setText(documentSnapshot.getString("tel"));
                 patientEmail.setText(documentSnapshot.getString("email"));
-                patientAddress.setText(documentSnapshot.getString("adresse"));
-                patientImage.setImageDrawable(defaultImage);
+                patientAddress.setText(documentSnapshot.getString("address"));
             }
         });
         // Find the toolbar view inside the activity layout

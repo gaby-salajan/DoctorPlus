@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 emailText.setText("");
                 passwordText.setText("");
-                if (creatBtn.getText().toString().equals("Create Account")){
+                if (creatBtn.getText().toString().equals("Creeaza cont")){
                     confirme.setVisibility(View.VISIBLE);
                     signUpBtn.setVisibility(View.VISIBLE);
                     loginBtn.setVisibility(View.INVISIBLE);

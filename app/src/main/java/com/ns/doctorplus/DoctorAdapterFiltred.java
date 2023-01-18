@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.ns.doctorplus.Common.Common;
 import com.ns.doctorplus.model.Doctor;
@@ -64,16 +65,14 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
         /// ajouter l'image
 
         String imageId = doctor.getEmail()+".jpg";
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId);
+        pathReference = FirebaseStorage.getInstance().getReference().child("UserProfile/"+ imageId);
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.with(doctorHolder.image.getContext())
+                Glide.with(doctorHolder.image.getContext())
                         .load(uri)
-                        .placeholder(R.mipmap.ic_launcher)
-                        .fit()
                         .centerCrop()
-                        .into(doctorHolder.image);//Image location
+                        .into(doctorHolder.image);
 
                 // profileImage.setImageURI(uri);
             }
