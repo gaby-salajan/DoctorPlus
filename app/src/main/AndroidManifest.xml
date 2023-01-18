@@ -22,6 +22,7 @@
         <activity android:name="com.ns.doctorplus.PatientRequestPage" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.DoctorHomeActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.AdminHomeActivity" android:exported="true"/>
+        <activity android:name="com.ns.doctorplus.AdminSelectedUser" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.EditProfileDoctorActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.ConfirmedAppointmensActivity" android:exported="true"/>
         <activity android:name="com.ns.doctorplus.PatientAppointementsActivity" android:exported="true"/>

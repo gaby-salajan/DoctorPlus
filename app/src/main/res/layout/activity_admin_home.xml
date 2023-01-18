@@ -11,14 +11,14 @@
         android:id="@+id/signOutBtn"
         android:layout_width="211dp"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_danger"
         android:text="Deconectare"
         android:textColor="#C62828"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listAllBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/searchUserRecycle" />
 
     <LinearLayout
         android:id="@+id/view"
@@ -66,19 +66,6 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/listAllBtn"
-        android:layout_width="211dp"
-        android:layout_height="60dp"
-
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_home"
-        android:text="Toate conturile"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchUserRecycle" />
 
     <EditText
         android:id="@+id/editText2"
@@ -100,11 +87,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchUserRecycle"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_width="409dp"
+        android:layout_height="440dp"
         android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

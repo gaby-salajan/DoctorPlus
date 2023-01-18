@@ -14,8 +14,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint="CNP"
-        android:inputType="number"
+        android:hint="Noul tip"
         android:paddingLeft="20dp"
         android:textColor="#000000"
         android:textColorHint="#9E9E9E"
@@ -23,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <EditText
         android:id="@+id/fieldName"
@@ -32,7 +31,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint="Nume Complet"
+        android:hint="Noul nume complet"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:textColor="#000000"
@@ -43,17 +42,16 @@
         app:layout_constraintTop_toBottomOf="@+id/fieldType"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/fieldAddress"
         android:layout_width="299dp"
         android:layout_height="46dp"
         android:layout_margin="20dp"
         android:layout_marginTop="72dp"
         android:background="@drawable/rounded_edittext"
-        android:clickable="true"
         android:ems="10"
         android:gravity="center_vertical"
-        android:hint="Zi de nastere"
+        android:hint="Noua adresa"
         android:paddingLeft="20dp"
         android:textColor="#000000"
         android:textColorHint="#9E9E9E"
@@ -69,7 +67,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint="Tel"
+        android:hint="Noul telefon"
         android:inputType="number"
         android:paddingLeft="20dp"
         android:textColor="#000000"
@@ -78,39 +76,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldAddress"
-        app:layout_constraintVertical_bias="0.014" />
-
-    <EditText
-        android:id="@+id/registerAddress"
-        android:layout_width="299dp"
-        android:layout_height="46dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="Adresa"
-        android:inputType="text"
-        android:paddingLeft="20dp"
-        android:textColor="#000000"
-        android:textColorHint="#9E9E9E"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldPhone"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/confirmBtn"
+        android:id="@+id/btnModify"
         android:layout_width="260dp"
         android:layout_height="46dp"
+        android:layout_marginBottom="16dp"
         android:background="#22BE87"
-        android:text="Finalizare"
+        android:text="Modify"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Type:"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerAddress"
-        app:layout_constraintVertical_bias="0.907" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Name:"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textType" />
+
+    <TextView
+        android:id="@+id/textAddress"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Address:"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textPhone"
+        android:layout_width="291dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Phone:"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

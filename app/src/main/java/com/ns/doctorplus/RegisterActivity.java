@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.firebase.Timestamp;
-import java.util.Date;
 import com.ns.doctorplus.fireStoreApi.PatientHelper;
 import com.ns.doctorplus.fireStoreApi.UserHelper;
 
@@ -48,10 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btn = (Button) findViewById(R.id.confirmBtn);
-        cnpField = (EditText) findViewById(R.id.registerCNP);
-        fullNameField = (EditText) findViewById(R.id.registerFullName);
-        birthDateField = (TextView) findViewById(R.id.registerBirthDate);
-        telField = (EditText) findViewById(R.id.registerTel);
+        cnpField = (EditText) findViewById(R.id.fieldType);
+        fullNameField = (EditText) findViewById(R.id.fieldName);
+        birthDateField = (TextView) findViewById(R.id.fieldAddress);
+        telField = (EditText) findViewById(R.id.fieldPhone);
         addressField = (EditText) findViewById(R.id.registerAddress);
 
         birthDateField.setOnClickListener(view -> {
