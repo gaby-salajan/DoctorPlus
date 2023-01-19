@@ -1,11 +1,11 @@
 ## DoctorPlus
 A mobile application that facilitates making appointments and monitoring patients.
 
-![](images/im5.png)
-![](images/im2.png)
-![](images/im3.png)
-![](images/im4.png)
-![](images/im1.png)
+![](images/im5.png =270x570)
+![](images/im2.png =270x570)
+![](images/im3.png =270x570)
+![](images/im4.png =270x570)
+![](images/im1.png =270x570)
 
 ## Authors
 **Gabriel Salajan**\
